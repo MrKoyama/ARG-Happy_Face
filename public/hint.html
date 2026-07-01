@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公式攻略ヒント・ガイド</title>
+<style>
+:root {
+    --bg-color: #fdfbf7; /* ぬくもり邸の背景に合わせた落ち着いた色 */
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-muted: #666666;
+    --border-color: #cccccc;
+    --btn-bg: #f5f5f5;
+    --btn-hover: #e9e9e9;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--card-bg);
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.rule-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+}
+
+.rule-box h2 {
+    margin-top: 0;
+    font-size: 16px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+}
+
+.rule-box ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.rule-box li {
+    margin-bottom: 8px;
+}
+
+.hint-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ページごとのアコーディオン（親） */
+.page-accordion {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.page-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.page-trigger:hover {
+    background-color: var(--btn-bg);
+}
+
+.page-trigger::after {
+    content: '▼';
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+}
+
+.page-accordion.is-active > .page-trigger::after {
+    transform: rotate(180deg);
+}
+
+.page-content {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    background-color: #fafafa;
+}
+
+.page-accordion.is-active > .page-content {
+    display: block;
+}
+
+/* 段階的ヒントのアコーディオン（子） */
+.sub-hint-box {
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    background-color: var(--card-bg);
+}
+
+.sub-hint-box:last-child {
+    margin-bottom: 0;
+}
+
+.sub-trigger {
+    width: 100%;
+    background-color: var(--btn-bg);
+    border: none;
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.sub-trigger:hover {
+    background-color: var(--btn-hover);
+}
+
+.sub-trigger::after {
+    content: '＋';
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.sub-hint-box.is-active > .sub-trigger::after {
+    content: '－';
+}
+
+.sub-content {
+    display: none;
+    padding: 15px;
+    font-size: 14px;
+    color: var(--text-color);
+    border-top: 1px solid var(--border-color);
+    line-height: 1.8;
+}
+
+.sub-hint-box.is-active > .sub-content {
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 60px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>ゲーム公式攻略ヒント・ガイド</h1>
+</header>
+
+<main>
+    <div class="rule-box">
+        <h2>最初に必ずお読みください</h2>
+        <ul>
+            <li>本ゲームは、画面内の「リンクをクリックする」か「テキストを検索窓に入力する」だけで進行できます。</li>
+            <li>URLの直接改変や、ソースコードの閲覧は一切必要ありません。</li>
+            <li>ネタバレを避けるため、現在詰まっているページの番号のみを開いてご確認ください。</li>
+        </ul>
+    </div>
+
+    <div class="hint-container">
+        
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 1 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ1のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ1のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ1の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 2 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ2のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ2のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ2の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 3 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ3のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ3のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ3の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 4 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ4のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ4のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ4の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 5 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ5のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ5のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ5の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 6 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ6のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ6のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ6の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 7 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ7のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ7のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ7の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 8 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ8のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ8のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ8の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 9 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ9のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ9のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ9の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 10 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ10のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ10のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ10の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 11 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ11のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ11のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ11の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 12 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ12のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ12のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ12の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 13 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ13のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ13のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ13の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 14 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ14のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ14のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ14の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 15 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ15のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ15のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ15の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 16 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ16のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ16のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ16の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 17 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ17のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ17のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ17の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 18 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ18のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ18のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ18の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 19 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ19のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ19のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ19の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 20 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ20のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ20のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ20の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 21 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ21のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ21のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ21の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 22 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ22のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ22のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ22の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 23 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ23のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ23のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ23の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 24 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ24のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ24のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ24の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 25 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ25のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ25のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ25の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 26 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ26のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ26のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ26の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 27 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ27のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ27のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ27の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 28 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ28のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ28のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ28の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 29 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ29のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ29のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ29の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 30 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ30のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ30のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ30の答えを記入</div></div>
+            </div>
+        </div>
+
+        <div class="page-accordion">
+            <button class="page-trigger">ページ 31 のヒント</button>
+            <div class="page-content">
+                <div class="sub-hint-box"><button class="sub-trigger">【第1段階】ヒント1（気づき）</button><div class="sub-content">ここにページ31のヒント1を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第2段階】ヒント2（考察）</button><div class="sub-content">ここにページ31のヒント2を記入</div></div>
+                <div class="sub-hint-box"><button class="sub-trigger">【第3段階】答え</button><div class="sub-content">ここにページ31の答えを記入</div></div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    &copy; ARG Official Hint Guide. All Rights Reserved.
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // ページごとのアコーディオン（親）の開閉
+    const pageTriggers = document.querySelectorAll('.page-trigger');
+    pageTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            const parent = this.parentElement;
+            // 他のページを閉じたい場合は以下の2行を有効化
+            // document.querySelectorAll('.page-accordion').forEach(acc => {
+            //     if(acc !== parent) acc.classList.remove('is-active');
+            // });
+            parent.classList.toggle('is-active');
+        });
+    });
+
+    // 段階的ヒント（子）の開閉
+    const subTriggers = document.querySelectorAll('.sub-trigger');
+    subTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            const parent = this.parentElement;
+            parent.classList.toggle('is-active');
+        });
+    });
+});
+</script>
+
+</body>
+</html>
