@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>取引先向け 業務搬入仕様書 - OMEGA LIFECARE</title>
+<style>
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --text-light: #666666;
+    --accent-color: #f39c12;
+    --accent-hover: #d68910;
+    --border-color: #eeeeee;
+    --card-bg: #fdfdfd;
+    --warning-color: #e74c3c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: var(--accent-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+}
+
+.global-nav {
+    display: flex;
+    align-items: center;
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.global-nav li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.global-nav li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.global-nav li a:hover::after,
+.global-nav li.active a::after {
+    width: 100%;
+}
+
+.global-nav li a:hover,
+.global-nav li.active a {
+    color: var(--accent-color);
+}
+
+.page-header {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+main {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: 500px;
+}
+
+.document-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+}
+
+.doc-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.doc-info {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.doc-info div {
+    margin-bottom: 5px;
+}
+
+.doc-confidential {
+    color: var(--warning-color);
+    font-weight: bold;
+    border: 1px solid var(--warning-color);
+    padding: 5px 10px;
+    font-size: 12px;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.doc-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.doc-section {
+    margin-bottom: 40px;
+}
+
+.doc-section h2 {
+    font-size: 16px;
+    color: var(--text-color);
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    border-left: 4px solid var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.doc-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-color);
+    padding-left: 15px;
+}
+
+.doc-text p {
+    margin-bottom: 1.5em;
+}
+
+.doc-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.doc-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.doc-list li::before {
+    content: '■';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 12px;
+    top: 2px;
+}
+
+.system-note {
+    background-color: #fffdf5;
+    border: 1px solid var(--accent-color);
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 4px;
+}
+
+.system-note h3 {
+    margin-top: 0;
+    font-size: 15px;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.system-note p {
+    font-size: 13px;
+    margin: 0;
+    color: var(--text-light);
+}
+
+footer {
+    background-color: #111;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #888;
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .global-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .search-container {
+        order: 2;
+        width: 100%;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .document-container {
+        padding: 30px 20px;
+    }
+
+    .doc-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .doc-confidential {
+        align-self: flex-start;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="omega_home.html" class="logo">
+        OMEGA <span>LIFECARE</span>
+    </a>
+    
+    <nav class="global-nav">
+        <ul>
+            <li><a href="omega_home.html">Home</a></li>
+            <li><a href="omega_about.html">Company</a></li>
+            <li><a href="omega_activities.html">Core Activities</a></li>
+            <li><a href="omega_laboratory.html">Laboratory</a></li>
+        </ul>
+    </nav>
+
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="Search...">
+        <button type="submit">Q</button>
+    </form>
+</header>
+
+<div class="page-header">
+    <h1 class="page-title">パートナー企業専用ページ</h1>
+</div>
+
+<main>
+    <div class="document-container">
+        <div class="doc-header">
+            <div class="doc-info">
+                <div>文書番号：OMLC-GL-2021-04</div>
+                <div>発行日：2021年4月1日</div>
+                <div>対象：提携施設長 / 指定物流業者 / LMF工場長</div>
+            </div>
+            <div class="doc-confidential">
+                【社外秘】関係者外共有厳禁
+            </div>
+        </div>
+
+        <h1 class="doc-title">【提携施設】特定バイオマス資源の<br>搬出・受け入れに関する業務仕様書</h1>
+
+        <div class="doc-section">
+            <h2>1. 目的</h2>
+            <div class="doc-text">
+                <p>本仕様書は、OMEGA LIFECAREグループが推進する「クローズド・サイクル（完全循環型供給網）」に基づき、提携する高齢者施設（以下、甲）で発生した特定バイオマス資源（死亡した入居者の遺体）を、ライフミート・フーズ合同会社の指定加工工場（以下、乙）へ安全かつ迅速に搬入するための標準作業手順を定めるものである。</p>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>2. 搬出作業におけるガイドライン（甲の作業）</h2>
+            <div class="doc-text">
+                <ul class="doc-list">
+                    <li><strong>発生時の初期対応：</strong>施設内で対象者が死亡した際、身元引受人が「OMEGA特約プラン（遺体処理委託）」に同意していることを確認の上、速やかに指定物流業者へ集荷要請を行うこと。</li>
+                    <li><strong>カモフラージュ措置：</strong>他の入居者および一般職員の目に触れぬよう、搬出は原則として深夜帯（23:00〜04:00）の裏口ルートを使用すること。遺体は指定の非透過性専用コンテナ（外観上は一般の医療廃棄物ボックスに偽装）に収納すること。</li>
+                    <li><strong>前処理：</strong>工場での加工効率を上げるため、ペースメーカー等の体内医療機器、金歯、および容易に取り外せる装飾品については、施設側で事前に除去すること。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>3. 搬入および受け入れガイドライン（乙の作業）</h2>
+            <div class="doc-text">
+                <ul class="doc-list">
+                    <li><strong>受け入れ時の検品：</strong>指定物流業者からコンテナを受領した際、重量と個体識別タグの照合を必ず行うこと。感染症指定疾患による死亡体の場合は、直ちにDライン（高温減菌処理ライン）へ回すこと。</li>
+                    <li><strong>加工工程への投入：</strong>受領後、速やかに内臓および骨格の分離処理を行い、LIFE MEATの主原料となる筋肉組織のみを抽出すること。抽出された組織は、直ちに独自の酵素分解プロセス（プロセスコード：OM-T）へ投入し、ペースト状の代替肉基材へと変換すること。</li>
+                    <li><strong>残渣の処理：</strong>分離された骨格等は、完全に粉砕した上で、産業用肥料または飼料としてダミー会社経由で処理すること。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>4. システムへの記録・報告義務</h2>
+            <div class="doc-text">
+                <p>本サイクルにおける個体（資源）のトレーサビリティを厳密に管理するため、甲、指定物流業者、および乙は、各工程が完了するごとに、弊社指定の統合管理システム<strong>「ウロボロス・ネット」</strong>へ必ずアクセスし、所定のログを記録すること。</p>
+                <div class="system-note">
+                    <h3>【ウロボロス・ネットへのアクセスについて】</h3>
+                    <p>システムの仕様上、アクセスには都度セキュリティ・トークンの入力が必要です。未入力、または虚偽の報告を行った場合、特約プランの違反として契約解除の対象となりますので、業務完了後は速やかに記録を行ってください。</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 27/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "omega_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GROUP & PARTNERSHIP - LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover, .global-nav li.active a {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+.page-header {
+    background-color: #111;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 16px;
+    line-height: 2;
+    color: #ccc;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.partnership-block {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 60px;
+    display: flex;
+}
+
+.partnership-block:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.partnership-image {
+    width: 50%;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partnership-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.8;
+}
+
+.partnership-content {
+    width: 50%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.partnership-content h2 {
+    font-size: 28px;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.partnership-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #bbb;
+    margin: 0 0 20px 0;
+}
+
+.highlight-box {
+    background-color: #111;
+    border-left: 4px solid var(--accent-color);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.highlight-box p {
+    color: #ddd;
+    margin: 0;
+    font-size: 14px;
+}
+
+.company-link-section {
+    text-align: center;
+    padding: 60px;
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-top: 60px;
+}
+
+.company-link-section h3 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    letter-spacing: 2px;
+}
+
+.company-link-section p {
+    color: #888;
+    margin-bottom: 40px;
+}
+
+.btn-company {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--accent-color);
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-company:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .partnership-block, .partnership-block:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .partnership-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .partnership-content {
+        width: 100%;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="life_meat.html">PRODUCTS</a></li>
+        <li><a href="life_meat_about.html">ABOUT US</a></li>
+        <li><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">GROUP & PARTNERSHIP</h1>
+    <div class="page-subtitle">親会社とのシナジーによる革新</div>
+</div>
+
+<main>
+    <div class="intro-text">
+        私たちライフミート・フーズ合同会社は、総合ヘルスケア・介護事業を全国展開する<br>
+        「オメガ・ライフケア・グループ」の食品事業部門として設立されました。<br>
+        グループ全体の巨大なネットワークとリソースを活用することで、<br>
+        他社には真似できない圧倒的な品質と価格のタンパク質サプライチェーンを実現しています。
+    </div>
+
+    <div class="partnership-block">
+        <div class="partnership-image">
+            <img src="images/group_building.png" alt="親会社 オメガ・ライフケア・グループ">
+        </div>
+        <div class="partnership-content">
+            <h2>ヘルスケア研究からのスピンオフ</h2>
+            <p>LIFE MEATの基幹となる「タンパク質分解・再結着技術」は、元々オメガ・ライフケア・グループの医療・ヘルスケア研究部門において、高齢者や要介護者向けの効率的な栄養摂取方法を研究する過程で偶然発見されたものです。</p>
+            <p>私たちはこの技術を一般の食品市場に応用し、野性味あふれる「肉の缶詰」としてリブランディングしました。親会社の膨大な生命科学のデータが、この商品の旨味を裏付けています。</p>
+        </div>
+    </div>
+
+    <div class="partnership-block">
+        <div class="partnership-image">
+            <img src="images/life_meat_plain.png" alt="循環型供給網の実現">
+        </div>
+        <div class="partnership-content">
+            <h2>クローズド・サイクル（循環型供給網）</h2>
+            <p>LIFE MEATが驚異的な低価格を実現できている最大の理由は、グループ企業間での完璧な「クローズド・サイクル」にあります。</p>
+            <p>オメガ・ライフケア・グループが運営する全国の介護施設（ぬくもり邸など）や関連施設との間で、原材料の調達から加工、そして最終的な食品の提供までをグループ内で完全に循環させるシステムを構築しています。</p>
+            <div class="highlight-box">
+                <p>私たちが開発したLIFE MEATの技術や製品は、親会社が運営する介護施設の給食事業にも「究極の介護食」として還元されており、施設の効率化と入居者様の健康維持に大きく貢献しています。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="company-link-section">
+        <h3>オメガ・ライフケア・グループ</h3>
+        <p>ヘルスケア、介護、そしてフードテック。生命のサイクルを総合的にプロデュースするグループ企業の全体像については、親会社の公式ウェブサイトをご覧ください。</p>
+        <a href="omega_home.html" class="btn-company">公式サイトへ移動する</a>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 21/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "life_meat_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONLINE STORE - LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover, .global-nav li.active a {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+.page-header {
+    background-color: #111;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.store-notice {
+    background-color: #1a0000;
+    border: 1px solid var(--accent-color);
+    border-left: 5px solid var(--accent-color);
+    padding: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.store-notice h2 {
+    color: var(--accent-color);
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.store-notice p {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.product-item {
+    display: flex;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    scroll-margin-top: 100px;
+    position: relative;
+    opacity: 0.7; /* 販売自粛感を出すための半透明化 */
+}
+
+/* 売り切れ・販売停止のオーバーレイ */
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.overlay-text {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    transform: rotate(-10deg);
+    border: 2px solid #fff;
+}
+
+.product-image {
+    width: 40%;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(80%); /* 少し色あせさせる */
+}
+
+.product-info {
+    width: 60%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 32px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.product-subtitle {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.product-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.product-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.product-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    text-decoration: line-through; /* 取扱停止なので線を引く */
+}
+
+.product-price span {
+    font-size: 14px;
+    color: #555;
+    font-weight: normal;
+}
+
+.product-stock {
+    font-size: 14px;
+    color: var(--accent-color);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-buy {
+    background-color: #333;
+    color: #666;
+    border: 1px solid #444;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: not-allowed;
+    border-radius: 4px;
+    width: 100%;
+}
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .product-item {
+        flex-direction: column;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .product-info {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="life_meat.html">PRODUCTS</a></li>
+        <li><a href="life_meat_about.html">ABOUT US</a></li>
+        <li><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li class="active"><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">ONLINE STORE</h1>
+    <div class="page-subtitle">公式オンラインストア</div>
+</div>
+
+<main>
+    <div class="store-notice">
+        <h2>販売の無期限自粛につきまして</h2>
+        <p>
+            平素はLIFE MEATをご愛顧いただき、誠にありがとうございます。<br><br>
+            現在、当社製品との関連性が疑われている一部報道および事象につきまして、関係各所にて事実関係の確認と調査を行っております。<br>
+            お客様の安全を第一に考え、調査結果が判明するまでの間、<strong>販売自粛</strong>とさせていただきます。<br><br>
+            お客様には多大なるご迷惑とご心配をおかけしておりますことを、深くお詫び申し上げます。
+        </p>
+    </div>
+
+    <!-- PLAIN -->
+    <div class="product-item" id="flavor-plain">
+        <div class="product-overlay">
+            <div class="overlay-text">SUSPENDED</div>
+        </div>
+        <div class="product-image">
+            <!-- プレーン味の缶詰の宣材写真。シンプルで無骨なデザインの缶が暗い背景に置かれている。画像サイズは400*400 -->
+            <img src="images/life_meat_plain.png" alt="PLAIN">
+        </div>
+        <div class="product-info">
+            <h2 class="product-name" style="color: #f5f5f5;">PLAIN</h2>
+            <div class="product-subtitle">LIFE MEAT プレーン（300g × 3缶セット）</div>
+            <div class="product-desc">
+                迷ったらまずはこれ。肉本来の野性味あふれる旨味と、噛みごたえのある食感をダイレクトに味わえる王道のプレーンテイスト。<br>
+                塩とわずかな香辛料のみでシンプルに味付けされているため、そのまま食べるのはもちろん、炒め物や煮込み料理へのアレンジも自由自在です。
+            </div>
+            <div class="product-price-row">
+                <div class="product-price">¥880 <span>(税込)</span></div>
+                <div class="product-stock">販売停止中</div>
+            </div>
+            <button class="btn-buy" disabled>CURRENTLY UNAVAILABLE</button>
+        </div>
+    </div>
+
+    <!-- SPICY -->
+    <div class="product-item" id="flavor-spicy">
+        <div class="product-overlay">
+            <div class="overlay-text">SUSPENDED</div>
+        </div>
+        <div class="product-image">
+            <!-- スパイシー味の缶詰の宣材写真。赤いラベルデザインの缶。画像サイズは400*400 -->
+            <img src="images/life_meat_spicy.png" alt="SPICY">
+        </div>
+        <div class="product-info">
+            <h2 class="product-name" style="color: #e74c3c;">SPICY</h2>
+            <div class="product-subtitle">LIFE MEAT スパイシー（300g × 3缶セット）</div>
+            <div class="product-desc">
+                厳選された粗挽きブラックペッパーと、食欲を刺激する特製チリパウダーをブレンド。一口食べれば、ピリッとした刺激が肉の旨味を引き立てます。<br>
+                お酒のお供として、特に冷えたビールとの相性は抜群です。夜の晩酌をワンランク上の時間に変える一缶。
+            </div>
+            <div class="product-price-row">
+                <div class="product-price">¥980 <span>(税込)</span></div>
+                <div class="product-stock">販売停止中</div>
+            </div>
+            <button class="btn-buy" disabled>CURRENTLY UNAVAILABLE</button>
+        </div>
+    </div>
+
+    <!-- BARBECUE -->
+    <div class="product-item" id="flavor-bbq">
+        <div class="product-overlay">
+            <div class="overlay-text">SUSPENDED</div>
+        </div>
+        <div class="product-image">
+            <!-- バーベキュー味の缶詰の宣材写真。オレンジや茶色を基調としたラベルデザインの缶。画像サイズは400*400 -->
+            <img src="images/life_meat_barbecue.png" alt="BARBECUE">
+        </div>
+        <div class="product-info">
+            <h2 class="product-name" style="color: #d35400;">BARBECUE</h2>
+            <div class="product-subtitle">LIFE MEAT バーベキュー（300g × 3缶セット）</div>
+            <div class="product-desc">
+                スモーキーなヒッコリーの香りと、フルーツの甘みを効かせた濃厚な甘辛BBQソースが、肉の繊維一つ一つにしっかりと絡みつきます。<br>
+                温かいご飯にそのまま乗せるだけで、極上の丼が完成。アウトドアシーンでも大活躍間違いなしの濃厚フレーバーです。
+            </div>
+            <div class="product-price-row">
+                <div class="product-price">¥980 <span>(税込)</span></div>
+                <div class="product-stock">販売停止中</div>
+            </div>
+            <button class="btn-buy" disabled>CURRENTLY UNAVAILABLE</button>
+        </div>
+    </div>
+
+    <!-- HERB & LEMON -->
+    <div class="product-item" id="flavor-herb">
+        <div class="product-overlay">
+            <div class="overlay-text">SUSPENDED</div>
+        </div>
+        <div class="product-image">
+            <!-- ハーブ＆レモン味の缶詰の宣材写真。緑色を基調とした爽やかなラベルデザインの缶。画像サイズは400*400 -->
+            <img src="images/life_meat_herb.png" alt="HERB & LEMON">
+        </div>
+        <div class="product-info">
+            <h2 class="product-name" style="color: #2ecc71;">HERB & LEMON</h2>
+            <div class="product-subtitle">LIFE MEAT ハーブ＆レモン（300g × 3缶セット）</div>
+            <div class="product-desc">
+                肉の力強さに、レモンの爽やかな酸味とローズマリー、タイムなど数種のハーブを効かせました。脂っぽさを感じさせない、さっぱりとした後味が特徴。<br>
+                女性にも人気のフレーバーで、新鮮な野菜サラダのトッピングや、パスタの具材としてもおすすめの逸品です。
+            </div>
+            <div class="product-price-row">
+                <div class="product-price">¥980 <span>(税込)</span></div>
+                <div class="product-stock">販売停止中</div>
+            </div>
+            <button class="btn-buy" disabled>CURRENTLY UNAVAILABLE</button>
+        </div>
+    </div>
+
+    <!-- GARLIC ONION -->
+    <div class="product-item" id="flavor-garlic">
+        <div class="product-overlay">
+            <div class="overlay-text">SUSPENDED</div>
+        </div>
+        <div class="product-image">
+            <!-- ガーリック・オニオン味の缶詰の宣材写真。黄色やゴールドを基調としたラベルデザインの缶。画像サイズは400*400 -->
+            <img src="images/life_meat_garlic.png" alt="GARLIC ONION">
+        </div>
+        <div class="product-info">
+            <h2 class="product-name" style="color: #f1c40f;">GARLIC ONION</h2>
+            <div class="product-subtitle">LIFE MEAT ガーリック・オニオン（300g × 3缶セット）</div>
+            <div class="product-desc">
+                香ばしくローストされたガーリックの強烈なパンチと、じっくり炒めたオニオンの深い甘みが絶妙なバランスで融合。<br>
+                一度開けたら最後、部屋中に広がる食欲をそそる香りに抗うことはできません。スタミナをつけたい時にガッツリいきたい一缶。
+            </div>
+            <div class="product-price-row">
+                <div class="product-price">¥980 <span>(税込)</span></div>
+                <div class="product-stock">販売停止中</div>
+            </div>
+            <button class="btn-buy" disabled>CURRENTLY UNAVAILABLE</button>
+        </div>
+    </div>
+
+    <!-- DEATH CHILI -->
+    <div class="product-item" id="flavor-death">
+        <div class="product-overlay">
+            <div class="overlay-text">SUSPENDED</div>
+        </div>
+        <div class="product-image">
+            <!-- デス・チリ味の缶詰の宣材写真。紫色や黒を基調とした、禍々しいデザインの缶。画像サイズは400*400 -->
+            <img src="images/life_meat_death.png" alt="DEATH CHILI">
+        </div>
+        <div class="product-info">
+            <h2 class="product-name" style="color: #8e44ad;">DEATH CHILI</h2>
+            <div class="product-subtitle">LIFE MEAT デス・チリ（300g × 3缶セット）</div>
+            <div class="product-desc">
+                【※辛味に弱い方は絶対に購入しないでください】<br>
+                ハバネロとブート・ジョロキアを限界までブレンドした、危険な辛さ。口に入れた瞬間に襲いかかる灼熱の痛みの奥に、確かな肉の旨味が潜んでいます。激辛を愛する者たちへ送る、禁断のフレーバー。
+            </div>
+            <div class="product-price-row">
+                <div class="product-price">¥1,200 <span>(税込)</span></div>
+                <div class="product-stock">販売停止中</div>
+            </div>
+            <button class="btn-buy" disabled>CURRENTLY UNAVAILABLE</button>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 18/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "life_meat_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

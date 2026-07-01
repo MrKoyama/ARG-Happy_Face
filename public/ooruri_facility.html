@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施設案内 - 介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li.active a {
+    background-color: var(--primary-dark);
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+.page-header {
+    background-color: #eee;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 32px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.facility-intro {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 50px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.gallery-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.gallery-img-wrapper {
+    width: 100%;
+    height: 300px;
+    background-color: #ddd;
+}
+
+.gallery-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-content {
+    padding: 20px;
+}
+
+.gallery-content h3 {
+    color: var(--primary-dark);
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.gallery-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.data-section {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.data-section h2 {
+    color: var(--primary-dark);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.data-table th {
+    background-color: #f9f9f9;
+    width: 30%;
+    text-align: left;
+    color: var(--primary-dark);
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-img-wrapper {
+        height: 250px;
+    }
+
+    .data-table th, .data-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .data-table th {
+        background-color: #f9f9f9;
+        border-bottom: none;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="ooruri_home.html">ホーム</a></li>
+        <li><a href="ooruri_service.html">サービス</a></li>
+        <li class="active"><a href="ooruri_facility.html">施設案内</a></li>
+        <li><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>施設案内</h1>
+</div>
+
+<main>
+    <div class="facility-intro">
+        豊かな自然光が差し込む、明るく開放的な空間。<br>
+        バリアフリーを徹底し、安全・安心に配慮した最新の設備を整えております。<br>
+        ご自宅のようにくつろげる、ぬくもりに満ちた環境をご提供します。
+    </div>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <div class="gallery-img-wrapper">
+                <img src="images/facility_lounge.png" alt="ラウンジ（共有スペース）">
+            </div>
+            <div class="gallery-content">
+                <h3>ラウンジ（共有スペース）</h3>
+                <p>ご入居者様同士の歓談や、ご家族との面会にご利用いただける広々としたスペースです。大きな窓からは季節の移ろいを感じる庭園を望むことができます。</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <div class="gallery-img-wrapper">
+                <!-- 清潔で暖かみのある個室の様子。介護用ベッド、洗面台、ナースコールが設置されている。画像サイズは600*400 -->
+                <img src="images/facility_room.png" alt="居室（個室）">
+            </div>
+            <div class="gallery-content">
+                <h3>居室（個室）</h3>
+                <p>プライバシーに配慮した完全個室です。電動介護ベッド、車椅子対応の洗面台、見守りセンサー付きのナースコールを全室に完備しており、安心してお休みいただけます。</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <div class="gallery-img-wrapper">
+                <img src="images/facility_dining.png" alt="ダイニングルーム（食堂）">
+            </div>
+            <div class="gallery-content">
+                <h3>ダイニングルーム（食堂）</h3>
+                <p>お食事を楽しんでいただくための明るいダイニングです。車椅子のままでもゆったりとテーブルにつけるよう、十分なスペースを確保しています。</p>
+            </div>
+        </div>
+
+                <div class="gallery-item">
+            <div class="gallery-img-wrapper">
+                <img src="images/facility_Rehabili.png" alt="リハビリルーム">
+            </div>
+            <div class="gallery-content">
+                <h3>リハビリルーム</h3>
+                <p>運動不足を解消するための広々としたリハビリルームです。専門の理学療法士が作成した個別のリハビリプログラムを実施します。入居者の方々でミニゲームを行うこともございます。</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <div class="gallery-img-wrapper">
+                <!-- 手すりが完備され、車椅子のまま入浴できる機械浴槽が設置された広々とした浴室。画像サイズは600*400 -->
+                <img src="images/facility_bath.png" alt="大浴場・機械浴室">
+            </div>
+            <div class="gallery-content">
+                <h3>大浴場・機械浴室</h3>
+                <p>手足を伸ばしてくつろげる大浴場のほか、お身体の状態に合わせて安全に入浴いただける最新の機械浴室を完備。介護スタッフがマンツーマンでサポートします。</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <div class="gallery-img-wrapper">
+                <img src="images/facility_conversation.png" alt="面話室">
+            </div>
+            <div class="gallery-content">
+                <h3>面話室</h3>
+                <p>個室の静かな空間でご家族との会話ができます。ラウンジでは話しにくい方や、落ち着いて会話したい方にもゆったりとご利用していただけます。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-section">
+        <h2>施設概要</h2>
+        <table class="data-table">
+            <tbody>
+                <tr>
+                    <th>施設名</th>
+                    <td>介護付有料老人ホーム「ぬくもり邸 おおるり」</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>愛知県〇〇市〇〇町1-2-3</td>
+                </tr>
+                <tr>
+                    <th>類型</th>
+                    <td>介護付有料老人ホーム（一般型特定施設入居者生活介護）</td>
+                </tr>
+                <tr>
+                    <th>居住の権利形態</th>
+                    <td>利用権方式</td>
+                </tr>
+                <tr>
+                    <th>定員 / 居室数</th>
+                    <td>150名 / 全150室（全室個室）</td>
+                </tr>
+                <tr>
+                    <th>共用設備</th>
+                    <td>ラウンジ、ダイニングルーム、リハビリルーム、大浴場、機械浴室、面話室</td>
+                </tr>
+                <tr>
+                    <th>開設年月日</th>
+                    <td>2018年4月</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 10/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

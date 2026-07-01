@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今月の献立表 - 介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li.active a {
+    background-color: var(--primary-dark);
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+.page-header {
+    background-color: #eee;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 32px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.intro-section p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* ─── 修正箇所：画像用コンテナのCSSを追加 ─── */
+.menu-image-wrapper {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin-bottom: 40px;
+    padding: 10px; /* 画像の周りに少し余白を作る */
+    text-align: center;
+}
+
+.menu-image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-width: 1000px; /* 元のテーブルと同じ最大横幅に制限 */
+    display: block;
+    margin: 0 auto;
+}
+/* ────────────────────────────────────── */
+
+.allergy-notice {
+    background-color: #fff3e0;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.allergy-notice h3 {
+    color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.allergy-notice p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.btn-allergy {
+    display: inline-block;
+    background-color: var(--primary-dark);
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-allergy:hover {
+    background-color: #d35400;
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    /* 旧テーブル用のレスポンシブ設定（非表示にされたthなど）は画像化に伴い不要になったため削除 */
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="ooruri_home.html">ホーム</a></li>
+        <li><a href="ooruri_service.html">サービス</a></li>
+        <li><a href="ooruri_facility.html">施設案内</a></li>
+        <li><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1><span id="currentMonth"></span>月の献立表</h1>
+</div>
+
+<main>
+    <div class="intro-section">
+        <p>当施設で提供している、高栄養介護食メニューの週間ベース献立です。<br>
+        毎日のお食事が待ち遠しくなるよう、栄養バランスと美味しさを追求しております。<br>
+        ※ご入居者様の嚥下状態に合わせ、その都度最適な形態に調整してご提供いたします。</p>
+    </div>
+
+    <div class="menu-image-wrapper">
+        <img src="images/menu.png" alt="今月の献立表 3×7マトリクス">
+    </div>
+    <div class="allergy-notice">
+        <h3>アレルギーをお持ちの方、ご家族の皆様へ</h3>
+        <p>当施設で提供しているすべてのメニューの「使用食材・成分詳細一覧」を別途ご用意しております。<br>食品アレルギーをお持ちの方、または原材料の詳細を確認されたい方は、以下のボタンより一覧ページをご確認ください。</p>
+        <a href="ooruri_ingredients.html" class="btn-allergy">使用食材・成分詳細一覧を確認する</a>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 13/00 &gt;
+    </div>
+</footer>
+
+<script>
+// 現在の月を取得して表示する
+document.addEventListener("DOMContentLoaded", function() {
+    var date = new Date();
+    var currentMonth = date.getMonth() + 1;
+    document.getElementById("currentMonth").textContent = currentMonth;
+});
+
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

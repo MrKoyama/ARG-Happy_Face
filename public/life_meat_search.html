@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEARCH RESULT - LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+.page-header {
+    background-color: #111;
+    padding: 40px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.page-title span {
+    color: var(--text-color);
+}
+
+main {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: 400px;
+}
+
+.result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.result-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 30px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s, border-color 0.3s, background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.result-card:hover {
+    transform: translateY(-3px);
+    border-color: #888;
+    background-color: #333;
+}
+
+.result-category {
+    font-size: 12px;
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.result-name {
+    font-size: 24px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+.result-desc {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.result-url {
+    font-size: 13px;
+    color: #666;
+    margin-top: 15px;
+    font-family: monospace;
+}
+
+.no-result {
+    text-align: center;
+    padding: 80px 0;
+    color: #666;
+}
+
+.no-result h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.no-result p {
+    font-size: 16px;
+}
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .result-card {
+        padding: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="life_meat.html">PRODUCTS</a></li>
+        <li><a href="life_meat_about.html">ABOUT US</a></li>
+        <li><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">SEARCH: <span id="displayQuery"></span></h1>
+</div>
+
+<main>
+    <div class="result-list" id="resultList">
+        <!-- 検索結果がここにJSで挿入されます -->
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; ex/00 &gt;
+    </div>
+</footer>
+
+<script>
+// 検索データベースの設定（拡張用）
+const searchDatabase = [
+    {
+        keywords: ["プレーン", "plain", "王道"],
+        results: [
+            {
+                category: "STORE / ITEM",
+                title: "LIFE MEAT PLAIN",
+                url: "life_meat_store.html#flavor-plain",
+                displayUrl: "life_meat_store.html#flavor-plain",
+                description: "肉本来の野性味あふれる旨味と、噛みごたえのある食感をダイレクトに味わえる王道のプレーンテイスト。塩とわずかな香辛料のみのシンプルな味付け。"
+            },
+            {
+                category: "RECIPE",
+                title: "究極の肉まみれ 野性チャーハン",
+                url: "life_meat_recipe.html",
+                displayUrl: "life_meat_recipe.html",
+                description: "【使用フレーバー：PLAIN】深夜の胃袋を満たす、暴力的なまでの旨味。プレーンの肉汁を米の一粒一粒に吸わせる最強のジャンクフードレシピ。"
+            }
+        ]
+    },
+    {
+        keywords: ["スパイシー", "spicy", "辛い", "ペッパー"],
+        results: [
+            {
+                category: "STORE / ITEM",
+                title: "LIFE MEAT SPICY",
+                url: "life_meat_store.html#flavor-spicy",
+                displayUrl: "life_meat_store.html#flavor-spicy",
+                description: "厳選された粗挽きブラックペッパーと特製チリパウダーをブレンド。一口食べればピリッとした刺激が肉の旨味を引き立てます。"
+            },
+            {
+                category: "RECIPE",
+                title: "地獄のチーズ・チリナチョス",
+                url: "life_meat_recipe.html",
+                displayUrl: "life_meat_recipe.html",
+                description: "【使用フレーバー：SPICY】ビールを無限に消費する背徳のツマミ。スパイシーの刺激と濃厚なチーズの海に溺れる、至高のナチョスアレンジ。"
+            }
+        ]
+    },
+    {
+        keywords: ["バーベキュー", "bbq", "barbecue", "甘辛", "キャンプ"],
+        results: [
+            {
+                category: "STORE / ITEM",
+                title: "LIFE MEAT BARBECUE",
+                url: "life_meat_store.html#flavor-bbq",
+                displayUrl: "life_meat_store.html#flavor-bbq",
+                description: "スモーキーな香りと濃厚な甘辛BBQソースが肉に絡みつく。温かいご飯に乗せるだけで極上の丼が完成するアウトドアにも最適なフレーバー。"
+            },
+            {
+                category: "RECIPE",
+                title: "豪快！山賊焼き風グリル",
+                url: "life_meat_recipe.html",
+                displayUrl: "life_meat_recipe.html",
+                description: "【使用フレーバー：BARBECUE】自然の中で肉を喰らう本能を満たす。BARBECUEの濃厚なソースが焦げる香りで周囲の視線を独占する豪快キャンプ飯。"
+            }
+        ]
+    },
+    {
+        keywords: ["ハーブ", "レモン", "herb", "lemon", "さっぱり"],
+        results: [
+            {
+                category: "STORE / ITEM",
+                title: "LIFE MEAT HERB & LEMON",
+                url: "life_meat_store.html#flavor-herb",
+                displayUrl: "life_meat_store.html#flavor-herb",
+                description: "爽やかなレモンの酸味と数種のハーブが香る、さっぱりとした後味が特徴。女性にも人気でサラダのトッピングにも最適です。"
+            }
+        ]
+    },
+    {
+        keywords: ["ガーリック", "オニオン", "garlic", "onion", "にんにく"],
+        results: [
+            {
+                category: "STORE / ITEM",
+                title: "LIFE MEAT GARLIC ONION",
+                url: "life_meat_store.html#flavor-garlic",
+                displayUrl: "life_meat_store.html#flavor-garlic",
+                description: "ローストガーリックの強烈なパンチと、オニオンの甘みが絶妙なバランスで融合。スタミナをつけたい時にガッツリいきたい一缶。"
+            }
+        ]
+    },
+    {
+        keywords: ["デス","チリ","death","激辛"],
+        results: [
+            {
+                category: "STORE / ITEM",
+                title: "LIFE MEAT DEATH CHILI",
+                url: "life_meat_store.html#flavor-death",
+                displayUrl: "life_meat_store.html#flavor-death",
+                description: "ハバネロとジョロキアを限界までブレンドした危険な辛さ。激辛を愛する者たちへ送る禁断のフレーバー。※辛味に弱い方は購入不可"
+            }
+        ]
+    },
+    {
+        keywords: ["販売自粛"],
+        results: [
+            {
+                category: "NEWS",
+                title: "一部報道に関する見解と商品の販売自粛に関するお知らせ",
+                url: "life_meat_notice.html",
+                description: "平素より、弊社商品「LIFE MEAT（ライフミート）」をご愛顧いただき、誠にありがとうございます。"
+            }
+        ]
+    },
+    {
+        keywords: ["代替タンパク質"],
+        results: [
+            {
+                category: "BIOLOGY",
+                title: "TECHNOLOGY",
+                url: "life_meat_protein.html",
+                description: "次世代タンパク質の革新"
+            }
+        ]
+    },
+    {
+        keywords: ["オメガ・ライフケア・グループ"],
+        results: [
+            {
+                category: "COMPANY",
+                title: "GROUP & PARTNERSHIP",
+                url: "life_meat_company.html",
+                description: "親会社とのシナジーによる革新"
+            }
+        ]
+    }
+];
+
+// URLからクエリを取得
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q') || '';
+
+// 画面に検索ワードを表示
+document.getElementById('displayQuery').textContent = query;
+document.getElementById('searchInput').value = query;
+
+const resultList = document.getElementById('resultList');
+
+// 検索処理と結果の描画
+function renderResults(searchQuery) {
+    resultList.innerHTML = '';
+    
+    if (!searchQuery.trim()) {
+        showNoResult("Please enter a search term.");
+        return;
+    }
+
+    const lowerQuery = searchQuery.toLowerCase();
+    let foundResults = [];
+
+    // データベースからキーワードが一致するものを探す
+    searchDatabase.forEach(item => {
+        const isMatch = item.keywords.some(keyword => lowerQuery.includes(keyword) || keyword.includes(lowerQuery));
+        if (isMatch) {
+            foundResults = foundResults.concat(item.results);
+        }
+    });
+
+    // 重複を削除
+    const uniqueResults = Array.from(new Set(foundResults.map(a => a.title)))
+        .map(title => foundResults.find(a => a.title === title));
+
+    // 結果の表示
+    if (uniqueResults.length > 0) {
+        uniqueResults.forEach(result => {
+            const card = document.createElement('a');
+            card.href = result.url;
+            card.className = 'result-card';
+            card.innerHTML = `
+                <div class="result-category">${result.category}</div>
+                <h2 class="result-name">${result.title}</h2>
+                <p class="result-desc">${result.description}</p>
+            `;
+            resultList.appendChild(card);
+        });
+    } else {
+        showNoResult("No results found.");
+    }
+}
+
+// 検索結果がない場合の表示
+function showNoResult(message) {
+    resultList.innerHTML = `
+        <div class="no-result">
+            <h2>NOT FOUND</h2>
+            <p>${message}<br>別のキーワードでお試しください。</p>
+        </div>
+    `;
+}
+
+// 初期描画
+renderResults(query);
+
+// 検索窓からの再検索
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var newQuery = document.getElementById('searchInput').value;
+    if(newQuery.trim() !== "") {
+        window.location.href = "?q=" + encodeURIComponent(newQuery);
+    }
+});
+</script>
+
+</body>
+</html>

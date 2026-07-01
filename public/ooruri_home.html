@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li.active a {
+    background-color: var(--primary-dark);
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+.hero {
+    width: 100%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--primary-dark);
+    font-size: 28px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 50px;
+}
+
+.features {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.feature-card {
+    flex: 1;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.feature-img-wrapper {
+    width: 100%;
+    height: 200px;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.feature-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-card h3 {
+    color: var(--primary-dark);
+    margin: 20px 0 10px;
+    font-size: 20px;
+}
+
+.feature-card p {
+    padding: 0 20px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    .features {
+        flex-direction: column;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li class="active"><a href="ooruri_home.html">ホーム</a></li>
+        <li><a href="ooruri_service.html">サービス</a></li>
+        <li><a href="ooruri_facility.html">施設案内</a></li>
+        <li><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <!-- 晴れ渡る青空の下にある、暖かみのあるオレンジ色の外壁が特徴的なモダンな老人ホームの外観画像。綺麗で広々としている。画像サイズは1200*500 -->
+    <img src="images/nursing_home_2.png" alt="ぬくもり邸 おおるり 外観">
+</div>
+
+<main>
+    <h2 class="section-title">笑顔あふれる、安心の毎日を。</h2>
+    
+    <div class="intro-text">
+        「ぬくもり邸 おおるり」は、愛知県内最大級の設備と環境を誇る介護付有料老人ホームです。<br>
+        24時間体制の手厚いケアと、最新の設備、そして真心を込めた日々のサポートで、<br>
+        ご入居者様お一人おひとりが、自分らしく、穏やかな時間を過ごせるようお手伝いいたします。
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-img-wrapper">
+                <img src="images/ooruri_01.png" alt="手厚いケア">
+            </div>
+            <h3>24時間体制のケア</h3>
+            <p>経験豊富な介護スタッフが24時間常駐し、日々の生活を優しくサポートします。持病をお持ちの方でもご安心いただけます。</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-img-wrapper">
+                <img src="images/ooruri_02.png" alt="こだわりの食事">
+            </div>
+            <h3>独自の食事サポート</h3>
+            <p>専属の栄養士が管理する、高タンパクで消化に優れたオリジナルメニューをご用意。毎日の「食」の喜びを大切にしています。</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-img-wrapper">
+                <img src="images/ooruri_03.png" alt="最新の設備">
+            </div>
+            <h3>充実の最新設備</h3>
+            <p>最新の見守りシステムを導入した快適な居室空間。広々としたラウンジやリハビリスペースで、健やかな毎日をお過ごしいただけます。</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 8/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

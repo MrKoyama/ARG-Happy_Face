@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>検索結果 - 介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    min-height: 400px;
+}
+
+.search-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.search-header h1 {
+    font-size: 22px;
+    color: var(--primary-dark);
+    margin: 0;
+}
+
+.search-header h1 span {
+    color: var(--text-color);
+}
+
+.result-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.result-item {
+    padding: 20px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-title {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.result-title a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.result-title a:hover {
+    text-decoration: underline;
+}
+
+.result-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.no-result {
+    text-align: center;
+    padding: 40px 0;
+    color: #666;
+    font-size: 16px;
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    main {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="ooruri_home.html">ホーム</a></li>
+        <li><a href="ooruri_service.html">サービス</a></li>
+        <li><a href="ooruri_facility.html">施設案内</a></li>
+        <li><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="search-header">
+        <h1>「<span id="displayQuery"></span>」の検索結果</h1>
+    </div>
+    
+    <ul class="result-list" id="resultList">
+    </ul>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; ex/00 &gt;
+    </div>
+</footer>
+
+<script>
+const searchDatabase = [
+    {
+        keywords: ["高栄養介護食メニュー"],
+        results: [
+            {
+                title: "高栄養介護食メニューのご紹介",
+                url: "ooruri_food.html",
+                description: "「食べる喜び」は、生きる喜びそのものです。ぬくもり邸おおるりでは、お一人おひとりの状態に合わせた美味しく、そして食"
+            }
+        ]
+    },
+    {
+        keywords: ["献立表"],
+        results: [
+            {
+                title: "今月の献立表",
+                url: "ooruri_meal_plan.html",
+                description: "当施設で提供している、高栄養介護食メニューの週間ベース献立です。毎日のお食事が待ち遠しくなるよう、栄養バランスと美"
+            }
+        ]
+    }
+];
+
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q') || '';
+
+document.getElementById('displayQuery').textContent = query;
+document.getElementById('searchInput').value = query;
+
+const resultList = document.getElementById('resultList');
+
+function renderResults(searchQuery) {
+    resultList.innerHTML = '';
+    
+    if (!searchQuery.trim()) {
+        resultList.innerHTML = '<div class="no-result">検索キーワードが入力されていません。</div>';
+        return;
+    }
+
+    let foundResults = [];
+
+    searchDatabase.forEach(item => {
+        const isMatch = item.keywords.some(keyword => searchQuery.includes(keyword) || keyword.includes(searchQuery));
+        if (isMatch) {
+            foundResults = foundResults.concat(item.results);
+        }
+    });
+
+    const uniqueResults = Array.from(new Set(foundResults.map(a => a.title)))
+        .map(title => foundResults.find(a => a.title === title));
+
+    if (uniqueResults.length > 0) {
+        uniqueResults.forEach(result => {
+            const li = document.createElement('li');
+            li.className = 'result-item';
+            li.innerHTML = `
+                <h2 class="result-title"><a href="${result.url}">${result.title}</a></h2>
+                <p class="result-desc">${result.description}</p>
+            `;
+            resultList.appendChild(li);
+        });
+    } else {
+        resultList.innerHTML = '<div class="no-result">一致する情報は見つかりませんでした。キーワードを変更して再度検索してください。</div>';
+    }
+}
+
+renderResults(query);
+
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var newQuery = document.getElementById('searchInput').value;
+    if(newQuery.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(newQuery);
+    }
+});
+</script>
+
+</body>
+</html>

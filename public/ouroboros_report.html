@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INCIDENT REPORT - Ouroboros-Net</title>
+<style>
+:root {
+    --bg-color: #111111;
+    --text-color: #e0e0e0;
+    --text-light: #888888;
+    --accent-color: #8e44ad;
+    --border-color: #333333;
+    --card-bg: #1a1a1a;
+    --header-bg: #0a0a0a;
+    --error-color: #c0392b;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.sys-logo {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.sys-logo span {
+    color: var(--accent-color);
+}
+
+.user-info {
+    font-size: 12px;
+    color: var(--text-light);
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-status {
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+main {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: calc(100vh - 200px);
+}
+
+.report-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--error-color);
+    border-radius: 4px;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.report-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.report-level {
+    color: var(--error-color);
+    font-family: monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.report-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0;
+    color: var(--text-color);
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.section-title {
+    font-size: 18px;
+    color: var(--accent-color);
+    border-left: 3px solid var(--accent-color);
+    padding-left: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.report-text {
+    font-size: 15px;
+    color: #cccccc;
+}
+
+.report-text p {
+    margin-bottom: 1.5em;
+}
+
+.highlight-box {
+    background-color: #111;
+    border: 1px dashed var(--error-color);
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 4px;
+}
+
+.highlight-box p {
+    margin: 0;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.transition-container {
+    margin-top: 80px;
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+.transition-text {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.btn-news {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 15px 40px;
+    border: 1px solid var(--text-color);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-news:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+footer {
+    background-color: var(--header-bg);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        align-items: flex-start;
+    }
+
+    .report-container {
+        padding: 30px 20px;
+    }
+
+    .report-title {
+        font-size: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="sys-logo">
+        Ouroboros<span>-Net</span>
+    </div>
+    <div class="user-info">
+        <span>ID: AUTH_FORCED_MODE</span>
+        <span class="user-status">CRITICAL</span>
+    </div>
+</header>
+
+<main>
+    <div class="report-container">
+        <div class="report-header">
+            <div class="report-level">CLASS-S CONFIDENTIAL REPORT</div>
+            <h1 class="report-title">代替タンパク質生成プロセスにおける<br>異常プリオンの発生と健康被害の因果関係について</h1>
+        </div>
+
+        <h2 class="section-title">事象の概要と原因の特定</h2>
+        <div class="report-text">
+            <p>当グループが推進してきた「クローズド・サイクル」——すなわち、提携する高齢者施設で死亡した入居者の遺体をバイオ・リサーチ部門の酵素技術で分解し、代替肉（LIFE MEAT基材）として再構築し、それを再び施設内の入居者へ給食として提供するシステムにおいて、致命的な欠陥が確認された。</p>
+            <p>調査の結果、同種間でのタンパク質摂取、所謂カニバリズムが閉鎖環境下で長期にわたって繰り返されたことにより、生成プロセスにおいて未知の「異常プリオン」が偶発的に発生・濃縮されていたことが判明した。</p>
+        </div>
+
+        <h2 class="section-title">症状の進行と現状の被害</h2>
+        <div class="report-text">
+            <p>この異常プリオンは、経口摂取によって人体に蓄積し、中枢神経系をスポンジ状に破壊する。初期症状として手足の末端に激しい痙攣が生じ、末期には大頬骨筋（表情筋）が異常に収縮する。これにより、患者は自らの意志に関係なく狂ったように笑う表情に固定され、激しい痙攣の末に脳死、あるいは心不全を引き起こす。</p>
+            <p>現在、世間で報道されている「強直笑死事案」は、数年前に当グループの施設（ぬくもり邸）内で発生した集団突然死と完全に一致する事象である。当時、施設内で発生した異常プリオンの存在に気づかないまま、余剰生産されたLIFE MEATを一般市場（オンラインストア等）へ流通させてしまったことが、現在の一般層における発症の直接的な原因である。</p>
+            <p>異常プリオンの潜伏期間は数年に及ぶと推測されるが、現在その潜伏期間を終えた者たちが一斉に発症フェーズに入り始めている。現在の医学において、異常プリオンを死滅させる治療法は存在せず、発症後の致死率は100%である。</p>
+        </div>
+
+        <h2 class="section-title">今後の見通しとリスク評価</h2>
+        <div class="report-text">
+            <p>過去数年間にわたるLIFE MEATの一般販売数（特にヴィーガン層やフィットネス層での一時的な流行）を考慮すると、現在報道されている被害数は氷山の一角に過ぎない。今後、加速度的に犠牲者の数が増加することは確実な情勢である。</p>
+            <p>警察および国立感染症研究所等の専門機関が、検体の病理学的特徴から異常プリオンの存在、ならびにクールー病に類するカニバリズムとの関連性に気づくのは、もはや時間の問題である。<br>
+            当グループはこれ以上の隠蔽は不可能と判断し、すべてのシステムの停止を決定した。</p>
+        </div>
+
+        <div class="transition-container">
+            <a href="news_end.html" class="btn-news">ニュースサイトへ遷移する</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 30/00 &gt;
+    </div>
+</footer>
+
+</body>
+</html>

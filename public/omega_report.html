@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究報告書 - OMEGA LIFECARE</title>
+<style>
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --text-light: #666666;
+    --accent-color: #f39c12;
+    --accent-hover: #d68910;
+    --border-color: #eeeeee;
+    --card-bg: #fdfdfd;
+    --error-color: #e74c3c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: var(--accent-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+}
+
+.global-nav {
+    display: flex;
+    align-items: center;
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.global-nav li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.global-nav li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.global-nav li a:hover::after,
+.global-nav li.active a::after {
+    width: 100%;
+}
+
+.global-nav li a:hover,
+.global-nav li.active a {
+    color: var(--accent-color);
+}
+
+.page-header {
+    background-color: #111;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-color);
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 10px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+main {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: 500px;
+}
+
+.report-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 60px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+}
+
+.report-main-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.report-section {
+    margin-bottom: 40px;
+}
+
+.report-section h2 {
+    font-size: 18px;
+    color: var(--text-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.report-text {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 2;
+}
+
+.report-text p {
+    margin-bottom: 1.5em;
+}
+
+.toc-box {
+    background-color: #f9f9f9;
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+}
+
+.toc-box h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.toc-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.toc-list li:last-child {
+    border-bottom: none;
+}
+
+.toc-list span.page {
+    font-family: monospace;
+}
+
+.pdf-download-box {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-pdf:hover {
+    background-color: var(--accent-color);
+}
+
+.btn-pdf::before {
+    content: '↓';
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.pdf-note {
+    font-size: 12px;
+    color: #999;
+    margin-top: 15px;
+    display: block;
+}
+
+/* カスタムポップアップ（モーダル）のスタイル */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    backdrop-filter: blur(3px);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--error-color); /* エラー感を出す赤色 */
+    padding: 40px;
+    border-radius: 4px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-title {
+    color: var(--error-color);
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.modal-text {
+    font-size: 15px;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.modal-code {
+    font-family: monospace;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #eee;
+}
+
+.btn-close {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-close:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #111;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #888;
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .global-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .search-container {
+        order: 2;
+        width: 100%;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .report-container {
+        padding: 30px 20px;
+    }
+
+    .report-main-title {
+        font-size: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="omega_home.html" class="logo">
+        OMEGA <span>LIFECARE</span>
+    </a>
+    
+    <nav class="global-nav">
+        <ul>
+            <li><a href="omega_home.html">Home</a></li>
+            <li><a href="omega_about.html">Company</a></li>
+            <li><a href="omega_activities.html">Core Activities</a></li>
+            <li><a href="omega_laboratory.html">Laboratory</a></li>
+        </ul>
+    </nav>
+
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="Search...">
+        <button type="submit">Q</button>
+    </form>
+</header>
+
+<div class="page-header">
+    <h1 class="page-title">RESEARCH REPORT</h1>
+    <p class="page-subtitle">共同研究報告書</p>
+</div>
+
+<main>
+    <div class="report-container">
+
+        <h1 class="report-main-title">高齢者施設におけるバイオマス資源循環と<br>高効率タンパク質補給食の開発に関する共同研究</h1>
+
+        <div class="toc-box">
+            <h3>目次</h3>
+            <ul class="toc-list">
+                <li><span>第1章 研究の背景と目的</span><span class="page">... P.02</span></li>
+                <li><span>第2章 施設内における未利用有機資源の回収スキーム</span><span class="page">... P.05</span></li>
+                <li><span>第3章 酵素分解・再結着プロセスによる新タンパク質の生成</span><span class="page">... P.12</span></li>
+                <li><span>第4章 アミノ酸スコアの最適化と被験者への投与実験</span><span class="page">... P.24</span></li>
+                <li><span>第5章 クローズド・サイクルにおける倫理的課題と今後の展望</span><span class="page">... P.38</span></li>
+                <li><span>総括・結論</span><span class="page">... P.45</span></li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h2>研究概要</h2>
+            <div class="report-text">
+                <p>本研究は、オメガ・ライフケア・グループが運営する介護付有料老人ホーム（シニア・ライフケア事業）と、ライフミート・フーズ合同会社（フード・テクノロジー事業）、およびオメガ・バイオリサーチラボの3部門による共同研究である。</p>
+                <p>急速な高齢化と将来的な世界的食糧危機を見据え、施設内で発生する未利用の有機資源の再資源化プロセスを検証した。</p>
+                <p>従来は施設外へ廃棄・火葬処分されていた成分から高純度のアミノ酸を抽出し、次世代の栄養補助食品（LIFE MEATブランド）へ還元する一連のシステムを確立。本プロセスにおける、加熱処理による「特定生物由来タンパク質」の構造変化と、製造された製品の生物学的安全性について報告する。</p>
+            </div>
+        </div>
+
+        <div class="pdf-download-box">
+            <button class="btn-pdf" id="downloadBtn">報告書全文をダウンロード (PDF: 12.4MB)</button>
+            <span class="pdf-note">※本資料は社内秘（機密度：高）に指定されています。取り扱いには十分ご注意ください。</span>
+        </div>
+    </div>
+</main>
+
+<!-- アクセス拒否のポップアップモーダル -->
+<div class="modal-overlay" id="errorModal">
+    <div class="modal-content">
+        <h3 class="modal-title">ACCESS DENIED</h3>
+        <p class="modal-text">
+            ダウンロードに失敗しました。<br>
+            このファイルは現在、管理者によってアクセスが制限されています。
+        </p>
+        <div class="modal-code">
+            Error Code: 403 Forbidden<br>
+            Security Level: Clearance Class-A Required
+        </div>
+        <button class="btn-close" id="closeModalBtn">確認</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 26/00 &gt;
+    </div>
+</footer>
+
+<script>
+// 検索機能
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "omega_search.html?q=" + encodeURIComponent(query);
+    }
+});
+
+// モーダル（ポップアップ）の制御
+const downloadBtn = document.getElementById('downloadBtn');
+const errorModal = document.getElementById('errorModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+
+downloadBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    errorModal.classList.add('active');
+});
+
+closeModalBtn.addEventListener('click', function() {
+    errorModal.classList.remove('active');
+});
+
+// モーダルの外側（黒い半透明部分）をクリックしても閉じる
+errorModal.addEventListener('click', function(e) {
+    if (e.target === errorModal) {
+        errorModal.classList.remove('active');
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RECIPE - LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover, .global-nav li.active a {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+.page-header {
+    background-color: #111;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 16px;
+    line-height: 2;
+    color: #ccc;
+    margin-bottom: 60px;
+}
+
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.recipe-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-header {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recipe-image {
+    width: 50%;
+    background-color: #222;
+    position: relative;
+}
+
+.recipe-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.recipe-title-area {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1a1a1a;
+}
+
+.recipe-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    align-self: flex-start;
+}
+
+.recipe-name {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--text-color);
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.recipe-desc {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.recipe-body {
+    display: flex;
+    padding: 40px;
+    gap: 40px;
+}
+
+.recipe-ingredients {
+    width: 35%;
+}
+
+.recipe-ingredients h3 {
+    font-size: 18px;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.ingredient-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ingredient-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+    font-size: 14px;
+    color: #ccc;
+}
+
+.used-flavor {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #111;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.used-flavor img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.used-flavor span {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.recipe-steps {
+    width: 65%;
+}
+
+.recipe-steps h3 {
+    font-size: 18px;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.step-list li {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.step-list li::before {
+    counter-increment: step-counter;
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .recipe-header {
+        flex-direction: column;
+    }
+
+    .recipe-image, .recipe-title-area {
+        width: 100%;
+    }
+
+    .recipe-image {
+        height: 250px;
+    }
+
+    .recipe-body {
+        flex-direction: column;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .recipe-ingredients, .recipe-steps {
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="life_meat.html">PRODUCTS</a></li>
+        <li><a href="life_meat_about.html">ABOUT US</a></li>
+        <li class="active"><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">RECIPE</h1>
+    <div class="page-subtitle">肉を極める。ワイルド・アレンジレシピ</div>
+</div>
+
+<main>
+    <div class="intro-text">
+        開けてそのまま食べるのも最高だが、少しの手間を加えるだけでLIFE MEATは化ける。<br>
+        キャンプ飯から、深夜の背徳的な男飯まで。<br>
+        本能の赴くままに、肉を喰らい尽くすための特製レシピを公開。
+    </div>
+
+    <div class="recipe-container">
+        
+        <!-- Recipe 1 -->
+        <div class="recipe-card">
+            <div class="recipe-header">
+                <div class="recipe-image">
+                    <img src="images/recipe_friedrice.png" alt="究極の肉まみれ・野性チャーハン">
+                </div>
+                <div class="recipe-title-area">
+                    <span class="recipe-tag">男飯 / 10MIN</span>
+                    <h2 class="recipe-name">究極の肉まみれ<br>野性チャーハン</h2>
+                    <p class="recipe-desc">深夜の胃袋を満たす、暴力的なまでの旨味。プレーンの肉汁を米の一粒一粒に吸わせることで、最強のジャンクフードが完成する。</p>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-ingredients">
+                    <h3>MATERIALS</h3>
+                    <ul class="ingredient-list">
+                        <li><span>白ご飯</span><span>どんぶり1杯</span></li>
+                        <li><span>卵</span><span>2個</span></li>
+                        <li><span>刻みネギ</span><span>たっぷり</span></li>
+                        <li><span>ごま油</span><span>大さじ1</span></li>
+                        <li><span>醤油</span><span>少々</span></li>
+                    </ul>
+                    <div class="used-flavor">
+                        <img src="images/life_meat_plain.png" alt="PLAIN">
+                        <span>使用フレーバー：PLAIN (1缶)</span>
+                    </div>
+                </div>
+                <div class="recipe-steps">
+                    <h3>HOW TO COOK</h3>
+                    <ul class="step-list">
+                        <li>熱したフライパンにごま油をひき、溶き卵を流し入れて半熟の状態で一旦取り出す。</li>
+                        <li>そのままのフライパンにLIFE MEAT（プレーン）を汁ごと全て投入し、中火で炒める。肉の脂が溶け出してきたら白ご飯を投入する。</li>
+                        <li>米を切るように強火で炒め、肉の旨味を米全体にコーティングさせる。</li>
+                        <li>半熟卵と刻みネギを戻し入れ、サッと炒め合わせる。最後に鍋肌から醤油を回し入れ、香ばしい匂いが立ったら完成。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe 2 -->
+        <div class="recipe-card">
+            <div class="recipe-header">
+                <div class="recipe-image">
+                    <img src="images/recipe_nachos.png" alt="地獄のチーズ・チリナチョス">
+                </div>
+                <div class="recipe-title-area">
+                    <span class="recipe-tag">酒のツマミ / 5MIN</span>
+                    <h2 class="recipe-name">地獄のチーズ・<br>チリナチョス</h2>
+                    <p class="recipe-desc">ビールを無限に消費する、背徳のツマミ。スパイシーの刺激と濃厚なチーズの海に溺れろ。</p>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-ingredients">
+                    <h3>MATERIALS</h3>
+                    <ul class="ingredient-list">
+                        <li><span>トルティーヤチップス</span><span>1袋</span></li>
+                        <li><span>とろけるチーズ</span><span>100g</span></li>
+                        <li><span>ハラペーニョ</span><span>適量</span></li>
+                        <li><span>黒こしょう</span><span>少々</span></li>
+                    </ul>
+                    <div class="used-flavor">
+                        <img src="images/life_meat_spicy.png" alt="SPICY">
+                        <span>使用フレーバー：SPICY (1缶)</span>
+                    </div>
+                </div>
+                <div class="recipe-steps">
+                    <h3>HOW TO COOK</h3>
+                    <ul class="step-list">
+                        <li>耐熱皿にトルティーヤチップスを敷き詰める。</li>
+                        <li>LIFE MEAT（スパイシー）をフォークなどで粗くほぐし、チップスの上に豪快に乗せる。</li>
+                        <li>上からとろけるチーズを山盛りに乗せ、オーブントースターでチーズに焦げ目がつくまで（約3〜5分）焼く。</li>
+                        <li>仕上げに黒こしょうを振りかけ、お好みでハラペーニョをトッピングすれば完成。熱いうちにビールと一緒に流し込め。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe 3 -->
+        <div class="recipe-card">
+            <div class="recipe-header">
+                <div class="recipe-image">
+                    <img src="images/recipe_camp.png" alt="豪快！山賊焼き風グリル">
+                </div>
+                <div class="recipe-title-area">
+                    <span class="recipe-tag">キャンプ飯 / 15MIN</span>
+                    <h2 class="recipe-name">豪快！<br>山賊焼き風グリル</h2>
+                    <p class="recipe-desc">自然の中で肉を喰らう本能を満たす。BARBECUEの濃厚なソースが焦げる香りで、周囲のキャンパーの視線を独占しろ。</p>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-ingredients">
+                    <h3>MATERIALS</h3>
+                    <ul class="ingredient-list">
+                        <li><span>太ネギ</span><span>1本</span></li>
+                        <li><span>きのこ類（しいたけ等）</span><span>適量</span></li>
+                        <li><span>アウトドア用スパイス</span><span>少々</span></li>
+                    </ul>
+                    <div class="used-flavor">
+                        <!-- バーベキュー味の缶詰の画像。小さめ。画像サイズは100*100 -->
+                        <img src="images/life_meat_barbecue.png" alt="BARBECUE">
+                        <span>使用フレーバー：BARBECUE (1缶)</span>
+                    </div>
+                </div>
+                <div class="recipe-steps">
+                    <h3>HOW TO COOK</h3>
+                    <ul class="step-list">
+                        <li>太ネギは5cm幅のぶつ切りにする。</li>
+                        <li>鉄板（またはアルミホイルで作った簡易皿）にネギときのこを並べ、軽く火を通す。</li>
+                        <li>野菜の上にLIFE MEAT（バーベキュー）をドカッと乗せ、缶に残った甘辛ソースも全てかける。</li>
+                        <li>ソースがグツグツと沸き立ち、肉の表面に少し焦げ目がつくまで炭火で炙る。仕上げにアウトドアスパイスを振りかければ完成。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 17/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "life_meat_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaboo!ニュース</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: #f6f6f6;
+    color: #333;
+}
+header {
+    background-color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff0033;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+.logo span {
+    color: #000;
+}
+.search-container {
+    display: flex;
+}
+.search-container input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 250px;
+}
+.search-container button {
+    padding: 8px 16px;
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+.global-nav {
+    background-color: #ff0033;
+    width: 100%;
+}
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.global-nav ul::-webkit-scrollbar {
+    display: none;
+}
+.global-nav li {
+    flex: 0 0 auto;
+}
+.global-nav li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.global-nav li.active a {
+    background-color: #cc0029;
+}
+.global-nav li a:hover {
+    background-color: #cc0029;
+}
+main {
+    max-width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.main-content {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.side-content {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #ff0033;
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+.section-title span {
+    background-color: #ff0033;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+.pickup-article {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 20px;
+}
+.pickup-article:hover .pickup-title {
+    text-decoration: underline;
+}
+.pickup-image {
+    width: 100%;
+    height: auto;
+    background-color: #eaeaea;
+    margin-bottom: 10px;
+}
+.pickup-title {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin-bottom: 5px;
+}
+.pickup-meta {
+    font-size: 12px;
+    color: #666;
+}
+.news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #eee;
+}
+.news-list li {
+    border-bottom: 1px solid #eee;
+}
+.news-list a {
+    display: flex;
+    padding: 12px 0;
+    text-decoration: none;
+    color: #333;
+    align-items: center;
+}
+.news-list a:hover {
+    background-color: #f9f9f9;
+}
+.news-list .time {
+    font-size: 12px;
+    color: #888;
+    width: 50px;
+    flex-shrink: 0;
+}
+.news-list .title {
+    font-size: 14px;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.news-list .title:hover {
+    text-decoration: underline;
+}
+.side-box {
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.side-box-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+.ranking-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.ranking-list li {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: flex-start;
+}
+.ranking-list .rank {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff0033;
+    width: 20px;
+    margin-right: 10px;
+    text-align: center;
+}
+.ranking-list a {
+    font-size: 13px;
+    color: #0078d4;
+    text-decoration: none;
+    line-height: 1.4;
+}
+.ranking-list a:hover {
+    text-decoration: underline;
+}
+footer {
+    background-color: #333;
+    color: #ccc;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 40px;
+}
+.footer-text {
+    line-height: 1.6;
+}
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .search-container {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .search-container input {
+        width: 100%;
+    }
+    main {
+        flex-direction: column;
+    }
+    .side-content {
+        width: 100%;
+    }
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-level {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">Yaboo!<span>ニュース</span></a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="ニュースを検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li class="active"><a href="#">主要</a></li>
+        <li><a href="#">国内</a></li>
+        <li><a href="#">国際</a></li>
+        <li><a href="#">経済</a></li>
+        <li><a href="#">エンタメ</a></li>
+        <li><a href="#">スポーツ</a></li>
+        <li><a href="#">IT</a></li>
+        <li><a href="#">科学</a></li>
+        <li><a href="#">地域</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="main-content">
+        <h2 class="section-title"><span>急上昇</span>主要ニュース</h2>
+        
+        <a href="news_01.html" class="pickup-article">
+            <!-- 規制線が張られたアパートの外観画像。画像サイズは600*315 -->
+            <img class="pickup-image" src="images/apartment.png">
+            <div class="pickup-title">アパートで50代男性が変死、直前に響き渡った「異常な笑い声」 相次ぐ事件との関連は</div>
+            <div class="pickup-meta">毎朝新聞デジタル 7/24(木) 11:32</div>
+        </a>
+
+        <ul class="news-list">
+            <li><a href="#"><span class="time">14:05</span><span class="title">政府、新たな経済対策の骨格案を提示 物価高への対応が焦点</span></a></li>
+            <li><a href="#"><span class="time">13:30</span><span class="title">週末にかけて全国的に冷え込み強まる 日本海側では降雪の恐れ</span></a></li>
+            <li><a href="#"><span class="time">12:15</span><span class="title">円安一時150円台後半まで進行 日銀総裁の会見受け警戒感</span></a></li>
+            <li><a href="#"><span class="time">11:50</span><span class="title">プロ野球CSファイナル、本日第3戦 両チームのスタメン発表</span></a></li>
+            <li><a href="#"><span class="time">10:20</span><span class="title">大型連休の国内旅行予約状況、前年比120%に回復の見通し</span></a></li>
+            <li><a href="#"><span class="time">09:45</span><span class="title">新型スマートフォンの詳細スペックがリーク カメラ性能が大幅向上か</span></a></li>
+            <li><a href="#"><span class="time">08:00</span><span class="title">都内の主要駅周辺で大規模な交通規制 午後からパレード開催で</span></a></li>
+        </ul>
+    </div>
+
+    <div class="side-content">
+        <div class="side-box">
+            <h3 class="side-box-title">アクセスランキング（国内）</h3>
+            <ul class="ranking-list">
+                <li><span class="rank">1</span><a href="news_01.html">アパートで50代男性が変死、直前に響き渡った「異常な笑い声」 相次ぐ事件との関連は</a></li>
+                <li><span class="rank">2</span><a href="#">政府、新たな経済対策の骨格案を提示 物価高への対応が焦点</a></li>
+                <li><span class="rank">3</span><a href="#">週末にかけて全国的に冷え込み強まる 日本海側では降雪の恐れ</a></li>
+                <li><span class="rank">4</span><a href="#">大型連休の国内旅行予約状況、前年比120%に回復の見通し</a></li>
+                <li><span class="rank">5</span><a href="#">都内の主要駅周辺で大規模な交通規制 午後からパレード開催で</a></li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空 transitionであり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 1/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "search_result.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

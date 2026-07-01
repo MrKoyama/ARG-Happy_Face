@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEARCH RESULT - OMEGA LIFECARE</title>
+<style>
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --text-light: #666666;
+    --accent-color: #f39c12;
+    --accent-hover: #d68910;
+    --border-color: #eeeeee;
+    --card-bg: #fdfdfd;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: var(--accent-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+}
+
+.global-nav {
+    display: flex;
+    align-items: center;
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.global-nav li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.global-nav li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.global-nav li a:hover::after,
+.global-nav li.active a::after {
+    width: 100%;
+}
+
+.global-nav li a:hover,
+.global-nav li.active a {
+    color: var(--accent-color);
+}
+
+.page-header {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.page-title span {
+    color: var(--accent-color);
+}
+
+main {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: 400px;
+}
+
+.result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.result-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 30px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.result-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.result-card:hover::before {
+    width: 8px;
+}
+
+.result-category {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.result-name {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+.result-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.8;
+    margin: 0 0 15px 0;
+}
+
+.result-url {
+    font-size: 12px;
+    color: #999;
+    font-family: monospace;
+}
+
+.no-result {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--text-light);
+}
+
+.no-result h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.no-result p {
+    font-size: 16px;
+}
+
+footer {
+    background-color: #111;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #888;
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .global-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .search-container {
+        order: 2;
+        width: 100%;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .result-card {
+        padding: 20px 20px 20px 30px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="omega_home.html" class="logo">
+        OMEGA <span>LIFECARE</span>
+    </a>
+    
+    <nav class="global-nav">
+        <ul>
+            <li><a href="omega_home.html">Home</a></li>
+            <li><a href="omega_about.html">COMPANY</a></li>
+            <li><a href="omega_activities.html">Core Activities</a></li>
+            <li><a href="omega_laboratory.html">LABORATORY</a></li>
+        </ul>
+    </nav>
+
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="Search...">
+        <button type="submit">Q</button>
+    </form>
+</header>
+
+<div class="page-header">
+    <h1 class="page-title">SEARCH: <span id="displayQuery"></span></h1>
+</div>
+
+<main>
+    <div class="result-list" id="resultList">
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; ex/00 &gt;
+    </div>
+</footer>
+
+<script>
+const searchDatabase = [
+    {
+        keywords: ["共同研究報告書"],
+        results: [
+            {
+                category: "",
+                title: "高齢者施設におけるバイオマス資源循環と高効率タンパク質補給食の開発に関する共同研究報告書",
+                url: "omega_report.html",
+                description: "オメガ・ライフケア・グループは、高齢化社会における福祉のあり方と人類の持続可能な食糧問題に対し、革新的なアプローチで挑む総合ヘルスケア企業です。"
+            }
+        ]
+    },
+    {
+        keywords: ["特定生物由来タンパク質"],
+        results: [
+            {
+                category: "",
+                title: "【提携施設】特定バイオマス資源の搬出・受け入れに関する業務仕様書",
+                url: "omega_spec.html",
+                description: "【社外秘】関係者外共有厳禁"
+            }
+        ]
+    },
+    {
+        keywords: ["特定生物由来タンパク質"],
+        results: [
+            {
+                category: "",
+                title: "【提携施設】特定バイオマス資源の搬出・受け入れに関する業務仕様書",
+                url: "omega_spec.html",
+                description: "【社外秘】関係者外共有厳禁"
+            }
+        ]
+    },
+    {
+        keywords: ["ウロボロス・ネット"],
+        results: [
+            {
+                category: "",
+                title: "ウロボロス・ネット アクセス画面",
+                url: "ouroboros_login.html",
+                description: "【社外秘】関係者外共有厳禁"
+            }
+        ]
+    }
+];
+
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q') || '';
+
+document.getElementById('displayQuery').textContent = query;
+document.getElementById('searchInput').value = query;
+
+const resultList = document.getElementById('resultList');
+
+function renderResults(searchQuery) {
+    resultList.innerHTML = '';
+    
+    if (!searchQuery.trim()) {
+        showNoResult("Please enter a search term.");
+        return;
+    }
+
+    const lowerQuery = searchQuery.toLowerCase();
+    let foundResults = [];
+
+    searchDatabase.forEach(item => {
+        const isMatch = item.keywords.some(keyword => lowerQuery.includes(keyword) || keyword.includes(lowerQuery));
+        if (isMatch) {
+            foundResults = foundResults.concat(item.results);
+        }
+    });
+
+    const uniqueResults = Array.from(new Set(foundResults.map(a => a.title)))
+        .map(title => foundResults.find(a => a.title === title));
+
+    if (uniqueResults.length > 0) {
+        uniqueResults.forEach(result => {
+            const card = document.createElement('a');
+            card.href = result.url;
+            card.className = 'result-card';
+            
+            let isSecret = result.category.includes("SECRET") ? 'style="color: #c0392b;"' : '';
+
+            card.innerHTML = `
+                <div class="result-category" ${isSecret}>${result.category}</div>
+                <h2 class="result-name">${result.title}</h2>
+                <p class="result-desc">${result.description}</p>
+            `;
+            resultList.appendChild(card);
+        });
+    } else {
+        showNoResult("No results found.");
+    }
+}
+
+function showNoResult(message) {
+    resultList.innerHTML = `
+        <div class="no-result">
+            <h2>NOT FOUND</h2>
+            <p>${message}<br>別のキーワードでお試しください。</p>
+        </div>
+    `;
+}
+
+renderResults(query);
+
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var newQuery = document.getElementById('searchInput').value;
+    if(newQuery.trim() !== "") {
+        window.location.href = "?q=" + encodeURIComponent(newQuery);
+    }
+});
+</script>
+
+</body>
+</html>

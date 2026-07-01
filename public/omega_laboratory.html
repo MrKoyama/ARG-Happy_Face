@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LABORATORY - OMEGA LIFECARE</title>
+<style>
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --text-light: #666666;
+    --accent-color: #f39c12;
+    --accent-hover: #d68910;
+    --border-color: #eeeeee;
+    --card-bg: #fdfdfd;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: var(--accent-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+}
+
+.global-nav {
+    display: flex;
+    align-items: center;
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.global-nav li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.global-nav li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.global-nav li a:hover::after,
+.global-nav li.active a::after {
+    width: 100%;
+}
+
+.global-nav li a:hover,
+.global-nav li.active a {
+    color: var(--accent-color);
+}
+
+.page-header {
+    background-color: #111;
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-color);
+}
+
+.page-title {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #aaa;
+    margin-top: 10px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+}
+
+main {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.intro-section h2 {
+    font-size: 28px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.intro-section p {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.research-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+}
+
+.research-block:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.research-image {
+    width: 50%;
+    position: relative;
+    background-color: #eee;
+}
+
+.research-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.research-content {
+    width: 50%;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.research-label {
+    font-size: 12px;
+    color: var(--accent-color);
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.research-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.research-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 80px;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--accent-color);
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+footer {
+    background-color: #111;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #888;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #555;
+}
+
+@media (max-width: 900px) {
+    .research-block, .research-block:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .research-image, .research-content {
+        width: 100%;
+    }
+    
+    .research-image {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .global-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .search-container {
+        order: 2;
+        width: 100%;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="omega_home.html" class="logo">
+        OMEGA <span>LIFECARE</span>
+    </a>
+    
+    <nav class="global-nav">
+        <ul>
+            <li><a href="omega_home.html">HOME</a></li>
+            <li><a href="omega_about.html">COMPANY</a></li>
+            <li><a href="omega_activities.html">CORE ACTIVITIES</a></li>
+            <li class="active"><a href="omega_laboratory.html">LABORATORY</a></li>
+        </ul>
+    </nav>
+
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="Search...">
+        <button type="submit">Q</button>
+    </form>
+</header>
+
+<div class="page-header">
+    <h1 class="page-title">LABORATORY</h1>
+    <p class="page-subtitle">オメガ・バイオリサーチラボ / 研究機関</p>
+</div>
+
+<main>
+    <div class="intro-section">
+        <h2>次世代の生命科学を、現実のソリューションへ。</h2>
+        <p>
+            オメガ・バイオリサーチラボは、OMEGA LIFECAREグループの技術的中枢を担う研究機関です。<br>
+            全国のケア施設から収集されるリアルタイムの生体データと、最先端のバイオテクノロジーを融合。<br>
+            人類が直面する「食糧」と「福祉」の課題を根本から解決するための、革新的な研究開発を行っています。
+        </p>
+    </div>
+
+    <!-- Theme 1 -->
+    <div class="research-block">
+        <div class="research-image">
+            <img src="images/lab_data.png" alt="生体データの収集と最適化">
+        </div>
+        <div class="research-content">
+            <div class="research-label">RESEARCH THEME 01</div>
+            <h3 class="research-title">生体データの統合的解析と<br>ライフサイクルの最適化</h3>
+            <p class="research-desc">
+                当グループが運営するシニア施設では、入居者様の健康状態、栄養吸収率、細胞の老化プロセスなどのデータを日々蓄積しています。当ラボではこれらのデータを解析し、人体の構成要素を最も効率的に維持・活用するためのアルゴリズムを構築。この知見は、次なる研究への重要なリソースとなっています。
+            </p>
+        </div>
+    </div>
+
+    <!-- Theme 2 -->
+    <div class="research-block">
+        <div class="research-image">
+            <img src="images/lab_protein.png" alt="次世代タンパク質変換技術">
+        </div>
+        <div class="research-content">
+            <div class="research-label">RESEARCH THEME 02</div>
+            <h3 class="research-title">高効率タンパク質分解・<br>再結着技術の開発</h3>
+            <p class="research-desc">
+                地球環境に負荷をかける従来の畜産に代わる、究極の代替タンパク質生成技術です。特定の有機資源を独自の酵素群でアミノ酸レベルまで分解し、人間の身体に最も適した組成で再結着（リビルド）させます。この技術により誕生したのが、子会社を通じて販売される「LIFE MEAT」のコアとなる成分です。
+            </p>
+        </div>
+    </div>
+
+    <!-- Theme 3 -->
+    <div class="research-block">
+        <div class="research-image">
+            <!-- クリーンルーム内で稼働する巨大なステンレス製のタンクや遠心分離機。冷たく合理的な印象。画像サイズは600*400 -->
+            <img src="images/lab_cycle.png" alt="クローズド・エコシステム">
+        </div>
+        <div class="research-content">
+            <div class="research-label">RESEARCH THEME 03</div>
+            <h3 class="research-title">完全循環型供給網<br>（クローズド・エコシステム）の実証</h3>
+            <p class="research-desc">
+                資源の枯渇を防ぐため、私たちが目指すのは廃棄物ゼロの完全なリサイクルシステムです。施設の運営から発生するあらゆる有機的資源を回収し、ラボの技術を用いて新たな栄養源へと再構築。これを再び施設へと還元することで、外部に依存しない究極のエコシステムを実現するための実証実験を行っています。
+            </p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">保有特許技術</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">0%</div>
+            <div class="stat-label">有機資源廃棄率（実証区区画）</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">稼働中のシステム</div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 25/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "omega_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

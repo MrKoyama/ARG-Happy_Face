@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施設長のご挨拶 - 介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li.active a {
+    background-color: var(--primary-dark);
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+.page-header {
+    background-color: #eee;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 32px;
+}
+
+main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.message-box {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.message-photo {
+    flex-shrink: 0;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.message-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-align: center;
+}
+
+.message-title {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.message-content {
+    flex-grow: 1;
+}
+
+.message-headline {
+    font-size: 24px;
+    color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 25px;
+    line-height: 1.4;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.message-text {
+    font-size: 16px;
+    line-height: 2;
+    color: #444;
+}
+
+.message-text p {
+    margin-bottom: 1.5em;
+}
+
+.message-signature {
+    text-align: right;
+    margin-top: 40px;
+    font-size: 18px;
+    font-family: serif;
+    color: var(--primary-dark);
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    main {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .message-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .message-photo {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .message-headline {
+        font-size: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="ooruri_home.html">ホーム</a></li>
+        <li><a href="ooruri_service.html">サービス</a></li>
+        <li><a href="ooruri_facility.html">施設案内</a></li>
+        <li class="active"><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>施設長のご挨拶</h1>
+</div>
+
+<main>
+    <div class="message-box">
+        <div class="message-photo">
+            <img src="images/director_photo.png" alt="施設長 近藤 雅之">
+            <span class="message-title">ぬくもり邸 おおるり 施設長</span>
+            <span class="message-name">近藤 雅之</span>
+        </div>
+        
+        <div class="message-content">
+            <h2 class="message-headline">「命の尊厳」と「食の喜び」を何よりも大切に。</h2>
+            
+            <div class="message-text">
+                <p>皆様、はじめまして。「ぬくもり邸 おおるり」施設長の近藤と申します。</p>
+                
+                <p>私たちがこの施設を立ち上げるにあたり、最も大切にした理念、それは「命の尊厳」を最後まで守り抜くということです。高齢化が進む現代社会において、単に安全な場所を提供するだけではなく、お一人おひとりが歩んでこられた人生に敬意を払い、心安らかに過ごせる「終の棲家（ついのすみか）」でありたいと願っております。</p>
+                
+                <p>そのために、私たちが特に力を入れているのが「毎日の食事」です。年齢を重ね、身体機能が衰えていく中で、「食べる喜び」は最後まで残る数少ない楽しみの一つです。しかし、従来の介護施設では、効率やコストが優先され、味気ない食事が提供されることも少なくありませんでした。</p>
+                
+                <p>当施設では、その常識を変えたいと考えています。専属の栄養士と調理スタッフが連携し、栄養価が高く、消化吸収に優れた独自のメニューをご提供しています。これは単なる栄養補給ではなく、皆様の「生きる力」そのものを支えるための、私たちの挑戦です。</p>
+                
+                <p>充実した設備と、24時間体制の温かなケア、そしてこだわりの食事。これらすべてを通じて、ご入居者様はもちろん、ご家族の皆様にも「ここを選んでよかった」と心から思っていただけるよう、職員一同、誠心誠意努めてまいります。</p>
+                
+                <p>ご見学やご相談は随時承っております。どうぞお気軽に、私たちの「ぬくもり邸」へ足をお運びください。</p>
+            </div>
+            
+            <div class="message-signature">
+                施設長　近藤 雅之
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 11/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

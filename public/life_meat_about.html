@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABOUT US - LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover, .global-nav li.active a {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+.page-header {
+    background-color: #111;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.about-section {
+    margin-bottom: 80px;
+}
+
+.about-headline {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.about-text {
+    font-size: 16px;
+    line-height: 2;
+    color: #ccc;
+    margin-bottom: 40px;
+}
+
+.about-text p {
+    margin-bottom: 1.5em;
+}
+
+.about-image {
+    width: 100%;
+    background-color: #222;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.feature-box {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.feature-box h3 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.feature-box p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #bbb;
+    margin: 0;
+}
+
+.company-profile {
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    margin-top: 80px;
+}
+
+.company-profile h3 {
+    text-align: center;
+    font-size: 24px;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.profile-table th, .profile-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+}
+
+.profile-table th {
+    width: 30%;
+    text-align: left;
+    color: #888;
+    font-weight: normal;
+}
+
+.profile-table td {
+    color: #ccc;
+}
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-table th, .profile-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .profile-table th {
+        border-bottom: none;
+        padding-bottom: 5px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="life_meat.html">PRODUCTS</a></li>
+        <li class="active"><a href="life_meat_about.html">ABOUT US</a></li>
+        <li><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">ABOUT US</h1>
+    <div class="page-subtitle">私たちについて / ライフミートの哲学</div>
+</div>
+
+<main>
+    <section class="about-section">
+        <h2 class="about-headline">「肉食」の概念を根底から覆す、<br>全く新しいタンパク質の形。</h2>
+        
+        <div class="about-text">
+            <p>現代社会において、タンパク質の摂取方法は多様化しています。しかし、私たちが本当に求めているのは、小難しい理屈や味気ない代替品ではなく、純粋に「肉を喰らう」という本能的な喜びではないでしょうか。</p>
+            
+            <p>LIFE MEAT（ライフミート）は、そんな人間の根源的な欲求を満たすために誕生しました。<br>
+            圧倒的なコストパフォーマンスを実現しながらも、妥協のない旨味と噛みごたえを追求。開けた瞬間に広がる野性味あふれる香りは、あなたの食卓を、そして人生を、もっと刺激的なものに変えるはずです。</p>
+        </div>
+
+        <div class="about-image">
+            <img src="images/life_meat.png" alt="LIFE MEAT コンセプトイメージ">
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3>01. ZERO COST CONCEPT</h3>
+                <p>独自の仕入れルートと、生産工程の徹底的な合理化により、驚異的な低価格を実現しました。毎日気兼ねなく、質の高いタンパク質を摂取できる。それが私たちの強みです。</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>02. ULTIMATE UMAMI</h3>
+                <p>肉本来の旨味を最大限に引き出すため、独自の熟成・加工技術を採用。口の中でほぐれる食感と、噛むほどに溢れ出す野性味は、他のどのミート缶詰とも一線を画します。</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>03. HIGH PROTEIN</h3>
+                <p>人間の身体を作るために最も効率の良いアミノ酸バランスを追求。アスリートから育ち盛りの子供まで、力強い身体づくりをサポートする「生命の肉（LIFE MEAT）」です。</p>
+            </div>
+            
+            <div class="feature-box">
+                <h3>04. LONG LIFE</h3>
+                <p>厳密な滅菌処理により、常温での長期保存が可能。日常の食卓はもちろん、アウトドアや災害時の備蓄食料としても、最高のパフォーマンスを発揮します。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="company-profile">
+        <h3>COMPANY PROFILE</h3>
+        <table class="profile-table">
+            <tbody>
+                <tr>
+                    <th>運営会社</th>
+                    <td>ライフミート・フーズ合同会社</td>
+                </tr>
+                <tr>
+                    <th>設立年月</th>
+                    <td>2016年 8月</td>
+                </tr>
+                <tr>
+                    <th>事業内容</th>
+                    <td>食肉加工品の製造・販売<br>新規タンパク源の研究開発</td>
+                </tr>
+                <tr>
+                    <th>本社所在地</th>
+                    <td>〒470-8894 <br>愛知県大原市小里町</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 16/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "life_meat_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

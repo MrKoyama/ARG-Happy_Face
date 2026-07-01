@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TECHNOLOGY - LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover, .global-nav li.active a {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+.page-header {
+    background-color: #111;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.tech-intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.tech-intro h2 {
+    font-size: 28px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.tech-intro p {
+    font-size: 16px;
+    line-height: 2;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tech-feature {
+    display: flex;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.tech-feature:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.tech-image {
+    width: 50%;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.tech-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.8;
+}
+
+.tech-content {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tech-content h3 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.tech-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #bbb;
+    margin: 0;
+}
+
+.partner-box {
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    text-align: center;
+    margin-top: 80px;
+    border-radius: 4px;
+}
+
+.partner-box h3 {
+    font-size: 20px;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.partner-box p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #999;
+    margin: 0;
+}
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .tech-feature, .tech-feature:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .tech-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .tech-content {
+        width: 100%;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="life_meat.html">PRODUCTS</a></li>
+        <li><a href="life_meat_about.html">ABOUT US</a></li>
+        <li><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">TECHNOLOGY</h1>
+    <div class="page-subtitle">次世代タンパク質の革新</div>
+</div>
+
+<main>
+    <div class="tech-intro">
+        <h2>「旨さ」と「安さ」の矛盾を越える。</h2>
+        <p>LIFE MEATが誇る圧倒的なコストパフォーマンスと、野性味あふれる深い旨味。<br>
+        この2つを両立させているのは、私たちが独自に開発した次世代のタンパク質加工技術です。<br>
+        従来の代替肉とは全く異なる、新しい「肉」の形がここにあります。</p>
+    </div>
+
+    <div class="tech-feature">
+        <div class="tech-image">
+            <img src="images/tech_facility.png" alt="独自のプロテイン構造">
+        </div>
+        <div class="tech-content">
+            <h3>独自のプロテイン構造</h3>
+            <p>私たちが開発したタンパク質は、人間の身体に最も適したアミノ酸スコアを持つように設計されています。特定のタンパク源を独自の酵素で分解し、再度結着させることで、肉本来の「噛みちぎる」食感と、舌の上でとろけるような柔らかさを同時に実現しました。</p>
+        </div>
+    </div>
+
+    <div class="tech-feature">
+        <div class="tech-image">
+            <img src="images/tech_fiber.png" alt="旨味の極大化">
+        </div>
+        <div class="tech-content">
+            <h3>旨味成分の極大化</h3>
+            <p>肉の「旨味」を感じるメカニズムを徹底的に分析。タンパク質が分解される過程で生じるイノシン酸やグルタミン酸などの旨味成分を、特殊な処理工程によって内部に閉じ込めることに成功しました。これにより、一口噛むごとに強烈な旨味が溢れ出します。</p>
+        </div>
+    </div>
+
+    <div class="tech-feature">
+        <div class="tech-image">
+            <img src="images/life_meat_plain.png" alt="完全なクローズド・システム">
+        </div>
+        <div class="tech-content">
+            <h3>完全なクローズド・システム</h3>
+            <p>LIFE MEATの驚異的な低コストを支えているのが、原材料の調達から加工、缶詰への充填までを一つの流れで行うクローズド・システムです。外部要因に左右されない安定した供給網を構築することで、常に最高の品質を最低価格で提供し続けることが可能になりました。</p>
+        </div>
+    </div>
+
+    <div class="partner-box">
+        <h3>共同研究開発</h3>
+        <p>LIFE MEATに採用されている独自のタンパク質加工技術は、<br>
+        親会社である<strong>オメガ・ライフケア・グループ</strong>の先進的な研究部門との共同開発により誕生しました。<br>
+        ヘルスケアや生命科学の分野で培われた膨大なデータと知見が、この革新的な食品を生み出す礎となっています。</p>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 20/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "life_meat_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

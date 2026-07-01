@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYSTEM NOTICE - Ouroboros-Net</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --text-light: #aaaaaa;
+    --accent-color: #8e44ad;
+    --accent-hover: #9b59b6;
+    --border-color: #333333;
+    --card-bg: #222222;
+    --header-bg: #111111;
+    --warning-color: #e74c3c;
+    --warning-bg: rgba(231, 76, 60, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.sys-logo {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.sys-logo span {
+    color: var(--accent-color);
+}
+
+.user-info {
+    font-size: 12px;
+    color: var(--text-light);
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-status {
+    color: var(--warning-color);
+    border: 1px solid var(--warning-color);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+main {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: calc(100vh - 200px);
+}
+
+.notice-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--warning-color);
+    border-radius: 4px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(231, 76, 60, 0.1);
+}
+
+.notice-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--warning-color);
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.notice-type {
+    color: var(--warning-color);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notice-type::before {
+    content: '▲';
+    font-size: 18px;
+}
+
+.notice-date {
+    color: var(--text-light);
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.notice-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.notice-body {
+    font-size: 15px;
+    line-height: 2;
+    color: #cccccc;
+    background-color: var(--warning-bg);
+    padding: 30px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+}
+
+.notice-body p {
+    margin-bottom: 1.5em;
+}
+
+.notice-body p:last-child {
+    margin-bottom: 0;
+}
+
+.system-status {
+    margin-top: 40px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    background-color: #111;
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #333;
+    padding-bottom: 5px;
+}
+
+.status-row:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.status-offline {
+    color: var(--warning-color);
+    font-weight: bold;
+}
+
+.link-box {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.detail-link {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 15px 30px;
+    border: 1px solid var(--accent-color);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.detail-link:hover {
+    background-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(142, 68, 173, 0.4);
+}
+
+footer {
+    background-color: var(--header-bg);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        align-items: flex-start;
+    }
+
+    .notice-container {
+        padding: 25px;
+    }
+
+    .notice-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .notice-title {
+        font-size: 20px;
+    }
+
+    .notice-body {
+        padding: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="sys-logo">
+        Ouroboros<span>-Net</span>
+    </div>
+    <div class="user-info">
+        <span>ID: AUTH_FORCED_MODE</span>
+        <span class="user-status">RESTRICTED</span>
+    </div>
+</header>
+
+<main>
+    <div class="notice-container">
+        <div class="notice-header">
+            <div class="notice-type">EMERGENCY NOTICE (全体通知)</div>
+            <div class="notice-date" id="systemDate">202X.XX.XX / 00:00:00</div>
+        </div>
+
+        <h1 class="notice-title">【緊急】Ouroboros-Net稼働の無期限停止および、関連事業の凍結について</h1>
+
+        <div class="notice-body">
+            <p>オメガ・ライフケア・グループ各施設の管理者、およびLMF工場関係者へ通達。</p>
+            
+            <p>現在、当グループが運用する「クローズド・サイクル（循環型供給網）」において、極めて重大なインシデントが発生しています。生成された代替タンパク質（LIFE MEAT基材）を経由し、未知の健康被害をもたらす事象が確認されました。</p>
+            
+            <p>この事態を重く受け止め、経営陣の判断により、本日をもって当システム（Ouroboros-Net）の通常稼働を完全に停止いたします。また、提携施設からのバイオマス資源の搬入、および食品工場における加工ラインもすべて無期限の凍結とします。</p>
+            
+            <p>現在、情報統制プロトコルが発動中であり、本システム上の一般連絡網、ファイル共有機能、および過去のログへのアクセス権限はすべて遮断されています。</p>
+        </div>
+
+        <div class="system-status">
+            <div class="status-row">
+                <span>Data Synchronization:</span>
+                <span class="status-offline">HALTED</span>
+            </div>
+            <div class="status-row">
+                <span>Biomass Transport Line:</span>
+                <span class="status-offline">SUSPENDED</span>
+            </div>
+            <div class="status-row">
+                <span>Communication Ports:</span>
+                <span class="status-offline">BLOCKED</span>
+            </div>
+        </div>
+
+        <div class="link-box">
+            <a href="ouroboros_report.html" class="detail-link">発生した問題の詳細レポートを確認する</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 29/00 &gt;
+    </div>
+</footer>
+
+<script>
+function updateSystemTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    document.getElementById('systemDate').textContent = `${year}.${month}.${day} / ${hours}:${minutes}:${seconds}`;
+}
+
+updateSystemTime();
+setInterval(updateSystemTime, 1000);
+</script>
+
+</body>
+</html>

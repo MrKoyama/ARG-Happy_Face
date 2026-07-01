@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【速報】強直笑死事案の原因は「LIFE MEAT」の異常プリオン 過去の喫食者に検査呼びかけ - Yaboo!ニュース</title>
+<style>
+:root {
+    --text-color: #333;
+    --link-color: #0078d4;
+    --border-color: #eee;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: #f6f6f6;
+    color: var(--text-color);
+}
+
+header {
+    background-color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff0033;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+.logo span {
+    color: #000;
+}
+.search-container {
+    display: flex;
+}
+.search-container input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 250px;
+}
+.search-container button {
+    padding: 8px 16px;
+    background-color: var(--link-color);
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+.global-nav {
+    background-color: #ff0033;
+    width: 100%;
+}
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.global-nav ul::-webkit-scrollbar {
+    display: none;
+}
+.global-nav li {
+    flex: 0 0 auto;
+}
+.global-nav li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.global-nav li.active a {
+    background-color: #cc0029;
+}
+.global-nav li a:hover {
+    background-color: #cc0029;
+}
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: relative; /* 演出用 */
+}
+.breadcrumb {
+    font-size: 13px;
+    color: var(--link-color);
+    margin-bottom: 20px;
+}
+.breadcrumb span {
+    color: #666;
+    margin: 0 5px;
+}
+.breadcrumb a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+.media-name {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.breaking-badge {
+    background-color: #ff0033;
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 12px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+h1 {
+    font-size: 26px;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+.date {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+.article-image-container {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.article-image-container img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+}
+.content {
+    font-size: 16px;
+    line-height: 1.8;
+}
+.content p {
+    margin-bottom: 1.5em;
+}
+.warning-box {
+    background-color: #fff4f4;
+    border: 2px solid #ff0033;
+    padding: 20px;
+    margin: 30px 0;
+}
+.warning-box h3 {
+    color: #ff0033;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* 終了演出用のスタイル */
+.glitch-text {
+    position: relative;
+}
+.end-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease-in-out;
+}
+.end-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+.end-title {
+    font-size: 48px;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+    font-family: serif;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+.end-subtitle {
+    font-size: 16px;
+    color: #888;
+    letter-spacing: 2px;
+}
+
+footer {
+    background-color: #333;
+    color: #ccc;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 40px;
+}
+.footer-text {
+    line-height: 1.6;
+}
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .search-container {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .search-container input {
+        width: 100%;
+    }
+    main {
+        margin: 0;
+        padding: 20px;
+        box-shadow: none;
+    }
+    h1 {
+        font-size: 22px;
+    }
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-level {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">Yaboo!<span>ニュース</span></a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="ニュースを検索">
+        <button type="submit" disabled>検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li class="active"><a href="#">主要</a></li>
+        <li><a href="#">国内</a></li>
+        <li><a href="#">国際</a></li>
+        <li><a href="#">経済</a></li>
+        <li><a href="#">エンタメ</a></li>
+        <li><a href="#">スポーツ</a></li>
+        <li><a href="#">IT</a></li>
+        <li><a href="#">科学・医療</a></li>
+        <li><a href="#">地域</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="breadcrumb">
+        <a href="#">トップ</a> <span>></span> <a href="#">主要</a> <span>></span> <a href="#">社会</a>
+    </div>
+
+    <div class="media-name"><span class="breaking-badge">速報</span> 毎朝新聞デジタル</div>
+    <h1 class="glitch-text">【速報】強直笑死事案の原因は「LIFE MEAT」の異常プリオン 過去の喫食者に検査呼びかけ</h1>
+    <div class="date">11/15(金) 14:00 配信</div>
+    
+    <div class="article-image-container">
+        <!-- 警察の捜査員がダンボール箱（LIFE MEATのロゴが見える）を押収して工場から運び出している様子。画像サイズは600*400 -->
+        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22600%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22%23cccccc%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-size%3D%2220%22%20fill%3D%22%23666666%22%20font-family%3D%22sans-serif%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3EImage%3A%20600x400%3C%2Ftext%3E%3C%2Fsvg%3E" alt="押収される製品">
+    </div>
+
+    <div class="content">
+        <p>全国で相次いでいた原因不明の突然死事件、通称「強直笑死事案」について、警察庁および国立感染症研究所は15日、原因が特定の加工食品に含まれていた「異常プリオンタンパク質」であると断定した。</p>
+        
+        <p>問題となっているのは、ライフミート・フーズ合同会社が製造・販売していた代替肉の缶詰「LIFE MEAT（ライフミート）」シリーズ。親会社であるOMEGA LIFECAREホールディングスが主導し、提携する高齢者施設で死亡した入居者の遺体を不法に加工・再利用していたことが捜査関係者への取材で明らかになった。</p>
+        
+        <p>専門家によると、同種間でのタンパク質摂取（カニバリズム）が閉鎖環境下で繰り返された結果、致死性の高い異常プリオンが発生したとみられる。この異常プリオンは熱にも強く、一般的な加熱調理では死滅しない。</p>
+        
+        <div class="warning-box">
+            <h3>【重要】一度でも喫食した方は直ちに医療機関へ</h3>
+            <p>異常プリオンは数年の長い潜伏期間を経て発症します。発症した場合、手足や顔面の激しい痙攣を伴い、現在の医学では治療法は確立されておらず、致死率は100%です。<br>
+            ヴィーガン層や若者を中心に大ヒットした背景から、潜在的な感染者は相当数に上ると見られています。「LIFE MEAT」を過去に一度でも食べたことがある方は、症状の有無に関わらず、速やかに最寄りの保健所または専門の医療機関に連絡し、精密検査を受けてください。</p>
+        </div>
+
+        <p>警察当局は同日午前、死体損壊・遺棄および食品衛生法違反などの疑いで、OMEGA LIFECAREグループの本社ならびに関連施設に一斉に家宅捜索に入った。同グループの代表ら数名の幹部について、すでに逮捕状を請求している模様だ。</p>
+        
+        <p>低価格と旨味を謳い、人々の食卓に浸透していた「LIFE MEAT」。効率と利益を極限まで追求した大企業の倫理の欠如が、未曾有のバイオハザードを引き起こす最悪の結果となった。</p>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 31/00 &gt;
+    </div>
+</footer>
+
+<!-- ARG終了の演出用レイヤー -->
+<div class="end-overlay" id="endOverlay">
+    <div class="end-title">THE END</div>
+    <div class="end-subtitle">Thank you for playing.</div>
+</div>
+
+<script>
+// ページ読み込み後、数秒経ってから終了演出を開始する
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+        const contentElements = document.querySelectorAll('p, h1, h3, div');
+        let index = 0;
+        
+        // テキストが徐々に文字化けして消えていく演出
+        const glitchInterval = setInterval(function() {
+            if (index < contentElements.length) {
+                if (contentElements[index].textContent.trim() !== "" && !contentElements[index].classList.contains('end-title') && !contentElements[index].classList.contains('end-subtitle')) {
+                    // 簡単な文字化け表現
+                    const originalText = contentElements[index].textContent;
+                    let garbledText = "";
+                    const chars = "!<>-_\\/[]{}—=+*^?#_";
+                    for(let i=0; i<originalText.length; i++) {
+                        if(Math.random() > 0.5 && originalText[i] !== " ") {
+                            garbledText += chars.charAt(Math.floor(Math.random() * chars.length));
+                        } else {
+                            garbledText += originalText[i];
+                        }
+                    }
+                    contentElements[index].textContent = garbledText;
+                    contentElements[index].style.color = "#999";
+                }
+                index++;
+            } else {
+                clearInterval(glitchInterval);
+                // 最後に暗転してTHE ENDを表示
+                setTimeout(function() {
+                    document.getElementById('endOverlay').classList.add('show');
+                }, 1000);
+            }
+        }, 50); // 処理速度
+
+    }, 15000); // 記事を読み終わるであろう時間（15秒後）に演出開始
+});
+</script>
+
+</body>
+</html>

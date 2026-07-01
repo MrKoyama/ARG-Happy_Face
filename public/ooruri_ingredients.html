@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使用食材・成分詳細一覧 - 介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li.active a {
+    background-color: var(--primary-dark);
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+.page-header {
+    background-color: #eee;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 32px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 40px;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.intro-section p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin: 0 0 15px 0;
+}
+
+.intro-section .supplier-note {
+    font-size: 14px;
+    color: #888;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+    margin-bottom: 0;
+}
+
+.ingredients-table-wrapper {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.ingredients-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ingredients-table th, .ingredients-table td {
+    padding: 15px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.ingredients-table th {
+    background-color: #fcf8f2;
+    color: var(--primary-dark);
+    font-weight: bold;
+    text-align: center;
+}
+
+.col-menu {
+    width: 25%;
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.col-ingredients {
+    width: 50%;
+}
+
+.col-allergies {
+    width: 25%;
+    text-align: center;
+}
+
+.allergy-item {
+    display: inline-block;
+    background-color: #ffeee6;
+    color: #d35400;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin: 2px;
+    font-size: 12px;
+    border: 1px solid #f39c12;
+}
+
+.none-allergy {
+    color: #888;
+}
+
+/* 隠しリンクのスタイル */
+.subtle-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.subtle-link:hover {
+    color: var(--primary-color);
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    .ingredients-table, .ingredients-table tbody, .ingredients-table tr, .ingredients-table th, .ingredients-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .ingredients-table tr {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+    }
+
+    .ingredients-table th {
+        display: none;
+    }
+
+    .col-menu, .col-ingredients, .col-allergies {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .col-menu {
+        background-color: #fcf8f2;
+        border-bottom: 2px solid var(--primary-color);
+    }
+    
+    .col-allergies::before {
+        content: "アレルギー物質: ";
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="ooruri_home.html">ホーム</a></li>
+        <li><a href="ooruri_service.html">サービス</a></li>
+        <li><a href="ooruri_facility.html">施設案内</a></li>
+        <li><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>使用食材・成分詳細一覧</h1>
+</div>
+
+<main>
+    <div class="intro-section">
+        <p>当施設で提供している代表的なお食事メニューの原材料および、特定原材料（アレルギー物質）の一覧です。<br>
+        食物アレルギーをお持ちのご入居者様は、必ずご確認ください。<br>
+        ※記載されていない日替わりメニュー等については、施設スタッフまでお問い合わせください。</p>
+        
+        <p class="supplier-note">
+            【安全・安心への取り組み】<br>
+            当施設の食事で提供される肉類はすべて、グループ企業が独自開発した<a href="life_meat.html" class="subtle-link">高栄養・易消化性の代替肉</a>を使用しております。提携業者から直接仕入れることで、徹底した品質管理と低コスト化を実現しています。
+        </p>
+    </div>
+
+    <div class="ingredients-table-wrapper">
+        <table class="ingredients-table">
+            <thead>
+                <tr>
+                    <th class="col-menu">メニュー名</th>
+                    <th class="col-ingredients">主な原材料・成分</th>
+                    <th class="col-allergies">アレルギー物質<br>（特定原材料28品目）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-menu">おおるり特製 柔らか煮込み肉</td>
+                    <td class="col-ingredients">
+                        代替肉加工品、還元水あめ、植物油脂、食塩、酵母エキス、加工でん粉
+                    </td>
+                    <td class="col-allergies">
+                        <span class="none-allergy">なし</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-menu">特製 やわらかハンバーグ</td>
+                    <td class="col-ingredients">
+                        代替肉加工品、玉ねぎ、パン粉、牛乳、卵、食塩、香辛料、デミグラスソース
+                    </td>
+                    <td class="col-allergies">
+                        <span class="allergy-item">卵</span>
+                        <span class="allergy-item">乳成分</span>
+                        <span class="allergy-item">小麦</span>
+                        <span class="allergy-item">大豆</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-menu">特製 豚肉の味噌炒め風ソフト食</td>
+                    <td class="col-ingredients">
+                        代替肉加工品、キャベツ、ピーマン、味噌、砂糖、酒、みりん、ごま油
+                    </td>
+                    <td class="col-allergies">
+                        <span class="allergy-item">大豆</span>
+                        <span class="allergy-item">ごま</span>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="col-menu">おおるり特製 シチュー</td>
+                    <td class="col-ingredients">
+                        代替肉加工品、じゃがいも、にんじん、玉ねぎ、牛乳、バター、小麦粉、ブイヨン
+                    </td>
+                    <td class="col-allergies">
+                        <span class="allergy-item">乳成分</span>
+                        <span class="allergy-item">小麦</span>
+                        <span class="allergy-item">大豆</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-menu">やわらかビーフカレー</td>
+                    <td class="col-ingredients">
+                        代替肉加工品、じゃがいも、にんじん、玉ねぎ、カレールウ、チャツネ、植物油脂
+                    </td>
+                    <td class="col-allergies">
+                        <span class="allergy-item">小麦</span>
+                        <span class="allergy-item">乳成分</span>
+                        <span class="allergy-item">大豆</span>
+                        <span class="allergy-item">りんご</span>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="col-menu">彩り野菜のやわらかテリーヌ</td>
+                    <td class="col-ingredients">かぼちゃ、にんじん、ほうれん草、和風だし（昆布、かつお）、ゼラチン、食塩、薄口醤油、みりん</td>
+                    <td class="col-allergies">
+                        <span class="allergy-item">大豆</span>
+                        <span class="allergy-item">小麦</span>
+                        <span class="allergy-item">ゼラチン</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-menu">茶碗蒸し</td>
+                    <td class="col-ingredients">卵、和風だし、代替肉加工品、かまぼこ、しいたけ、三つ葉、薄口醤油</td>
+                    <td class="col-allergies">
+                        <span class="allergy-item">卵</span>
+                        <span class="allergy-item">小麦</span>
+                        <span class="allergy-item">大豆</span>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="col-menu">やわらかうどん（ソフト麺）</td>
+                    <td class="col-ingredients">小麦粉、食塩、植物油、加工でん粉</td>
+                    <td class="col-allergies">
+                        <span class="allergy-item">小麦</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 14/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

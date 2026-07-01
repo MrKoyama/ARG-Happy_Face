@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover, .global-nav li.active a {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+.hero {
+    width: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    display: block;
+    opacity: 0.9;
+}
+
+main {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 60px;
+    color: var(--text-color);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--accent-color);
+    margin: 20px auto 0;
+}
+
+.concept-text {
+    text-align: center;
+    font-size: 18px;
+    line-height: 2;
+    color: #bbb;
+    margin-bottom: 80px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.concept-text strong {
+    color: var(--text-color);
+    font-size: 22px;
+}
+
+.flavor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+/* リンクをカード全体に適用するためのスタイル変更 */
+.flavor-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.flavor-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.flavor-card-link:hover .flavor-card {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-color: #888;
+    background-color: #333;
+}
+
+.flavor-name {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.flavor-desc {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.flavor-card.plain .flavor-name { color: #f5f5f5; }
+.flavor-card.spicy .flavor-name { color: #e74c3c; }
+.flavor-card.bbq .flavor-name { color: #d35400; }
+.flavor-card.herb .flavor-name { color: #2ecc71; }
+.flavor-card.garlic .flavor-name { color: #f1c40f; }
+.flavor-card.death .flavor-name { color: #8e44ad; }
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .flavor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li class="active"><a href="life_meat.html">PRODUCTS</a></li>
+        <li><a href="life_meat_about.html">ABOUT US</a></li>
+        <li><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <img src="images/life_meat.png" alt="LIFE MEAT ラインナップ">
+</div>
+
+<main>
+    <div class="concept-text">
+        <p><strong>人生を、もっと肉らしく。</strong></p>
+        <p>圧倒的な満足感、妥協のない食感、そして常識を覆すコストパフォーマンス。<br>
+        LIFE MEATは、現代人の「肉を喰らう喜び」を満たすために開発された、全く新しいジャンルのミート缶詰です。<br>
+        独自の加工技術により、開けてすぐに最高の状態でお召し上がりいただけます。<br>
+        さあ、あなたの本能を呼び覚まそう。</p>
+    </div>
+
+    <h2 class="section-title">FLAVOR LINEUP</h2>
+
+    <div class="flavor-grid">
+        <a href="life_meat_store.html#flavor-plain" class="flavor-card-link">
+            <div class="flavor-card plain">
+                <div class="flavor-name">PLAIN</div>
+                <div class="flavor-desc">肉本来の旨味をダイレクトに味わえる、王道のプレーンテイスト。どんな料理にもアレンジ可能。</div>
+            </div>
+        </a>
+
+        <a href="life_meat_store.html#flavor-spicy" class="flavor-card-link">
+            <div class="flavor-card spicy">
+                <div class="flavor-name">SPICY</div>
+                <div class="flavor-desc">厳選されたブラックペッパーとチリパウダーが食欲を刺激する。ビールとの相性は抜群。</div>
+            </div>
+        </a>
+
+        <a href="life_meat_store.html#flavor-bbq" class="flavor-card-link">
+            <div class="flavor-card bbq">
+                <div class="flavor-name">BARBECUE</div>
+                <div class="flavor-desc">スモーキーな香りと濃厚な甘辛ソースが肉に絡みつく。アウトドアでも大活躍のフレーバー。</div>
+            </div>
+        </a>
+
+        <a href="life_meat_store.html#flavor-herb" class="flavor-card-link">
+            <div class="flavor-card herb">
+                <div class="flavor-name">HERB & LEMON</div>
+                <div class="flavor-desc">爽やかなレモンの酸味と数種のハーブが香る、さっぱりとした後味。サラダのトッピングにも。</div>
+            </div>
+        </a>
+
+        <a href="life_meat_store.html#flavor-garlic" class="flavor-card-link">
+            <div class="flavor-card garlic">
+                <div class="flavor-name">GARLIC ONION</div>
+                <div class="flavor-desc">ローストガーリックのパンチと、オニオンの甘みが絶妙なバランス。スタミナ満点の一缶。</div>
+            </div>
+        </a>
+
+        <a href="life_meat_store.html#flavor-death" class="flavor-card-link">
+            <div class="flavor-card death">
+                <div class="flavor-name">DEATH CHILI</div>
+                <div class="flavor-desc">ハバネロとジョロキアをブレンドした、危険な辛さ。激辛好きにしかおすすめできない禁断の味。</div>
+            </div>
+        </a>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 15/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "life_meat_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

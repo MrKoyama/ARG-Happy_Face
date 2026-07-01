@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaboo!ニュース 検索</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: #f6f6f6;
+    color: #333;
+}
+header {
+    background-color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff0033;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+.logo span {
+    color: #000;
+}
+.search-container {
+    display: flex;
+}
+.search-container input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 250px;
+}
+.search-container button {
+    padding: 8px 16px;
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+.global-nav {
+    background-color: #ff0033;
+    width: 100%;
+}
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.global-nav ul::-webkit-scrollbar {
+    display: none;
+}
+.global-nav li {
+    flex: 0 0 auto;
+}
+.global-nav li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.global-nav li a:hover {
+    background-color: #cc0029;
+}
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    min-height: 500px;
+}
+.search-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.search-header h1 {
+    font-size: 18px;
+    margin: 0;
+}
+.search-header h1 span {
+    color: #0078d4;
+    font-weight: bold;
+}
+.result-count {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
+}
+.result-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.result-item {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+.result-item:last-child {
+    border-bottom: none;
+}
+.result-thumb {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+    background-color: #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.result-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.result-detail {
+    flex-grow: 1;
+}
+.result-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+.result-title a {
+    color: #0078d4;
+    text-decoration: none;
+}
+.result-title a:hover {
+    text-decoration: underline;
+}
+.result-meta {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.result-meta span {
+    margin-right: 15px;
+}
+.result-desc {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+}
+.no-result {
+    padding: 40px 0;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+}
+footer {
+    background-color: #333;
+    color: #ccc;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 40px;
+}
+.footer-text {
+    line-height: 1.6;
+}
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .search-container {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .search-container input {
+        width: 100%;
+    }
+    main {
+        margin: 0;
+        padding: 20px;
+        box-shadow: none;
+    }
+    .result-item {
+        flex-direction: column;
+    }
+    .result-thumb {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-level {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">Yaboo!<span>ニュース</span></a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="ニュースを検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="#">主要</a></li>
+        <li><a href="#">国内</a></li>
+        <li><a href="#">国際</a></li>
+        <li><a href="#">経済</a></li>
+        <li><a href="#">エンタメ</a></li>
+        <li><a href="#">スポーツ</a></li>
+        <li><a href="#">IT</a></li>
+        <li><a href="#">科学・医療</a></li>
+        <li><a href="#">地域</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="search-header">
+        <h1>「<span id="displayQuery"></span>」の検索結果</h1>
+        <div class="result-count" id="resultCount"></div>
+    </div>
+    
+    <ul class="result-list" id="resultList">
+    </ul>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; ex/00 &gt;
+    </div>
+</footer>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q') || '';
+
+document.getElementById('displayQuery').textContent = query;
+document.getElementById('searchInput').value = query;
+
+const resultList = document.getElementById('resultList');
+const resultCount = document.getElementById('resultCount');
+
+if (query === '強直笑死事案') {
+    resultCount.textContent = '約 3 件';
+    
+    const item1 = document.createElement('li');
+    item1.className = 'result-item';
+    item1.innerHTML = `
+        <div class="result-thumb">
+            <img src="images/apartment.png">
+        </div>
+        <div class="result-detail">
+            <h2 class="result-title"><a href="news_01.html">アパートで50代男性が変死、直前に響き渡った「異常な笑い声」</a></h2>
+            <div class="result-meta"><span>毎朝新聞デジタル</span><span>7/24(木) 11:32</span></div>
+            <div class="result-desc">静岡県警は23日、県内の木造アパートの一室で、この部屋に住む50代とみられる男性の遺体を発見したと発表した。同日午前、アパートの大家が安否確認のためにマスターキーで室内に入ったところ...</div>
+        </div>
+    `;
+
+    const item2 = document.createElement('li');
+    item2.className = 'result-item';
+    item2.innerHTML = `
+        <div class="result-thumb">
+            <img src="images/camp.png">
+        </div>
+        <div class="result-detail">
+            <h2 class="result-title"><a href="news_02.html">赤城山中でソロキャンパーの変死体を発見、深夜の山に響いた「狂気的な笑い声」 相次ぐ不審死との関連は</a></h2>
+            <div class="result-meta"><span>関東日報オンライン</span><span>8/11(月) 12:00</span></div>
+            <div class="result-desc">群馬県警は9日、赤城山中の指定キャンプ場から数キロ離れた林道脇で、先月末から行方不明になっていた都内の30代男性の遺体を発見したと発表した。男性はソロキャンプ目的で山に入ったとみられて...</div>
+        </div>
+    `;
+
+    const item3 = document.createElement('li');
+    item3.className = 'result-item';
+    item3.innerHTML = `
+        <div class="result-thumb">
+            <img src="images/live.png">
+        </div>
+        <div class="result-detail">
+            <h2 class="result-title"><a href="news_03.html">人気自然派インフルエンサー、自宅で変死 配信中の“異常な痙攣”と「笑い病」の関連は</a></h2>
+            <div class="result-meta"><span>週刊文秋ONLINE</span><span>8/18(月) 08:15</span></div>
+            <div class="result-desc">ヴィーガン生活や代替肉の紹介などで、同世代の女性を中心に人気を集めていた自然派インフルエンサーの早見 みあさん（20代）が、都内の自宅マンションで死亡しているのが発見された。数日間SNS...</div>
+        </div>
+    `;
+
+    resultList.appendChild(item1);
+    resultList.appendChild(item2);
+    resultList.appendChild(item3);
+
+} else if (query === '笑い病'){
+    resultCount.textContent = '約 1 件';
+
+    const item4 = document.createElement('li');
+    item4.className = 'result-item';
+    item4.innerHTML = `
+        <div class="result-thumb">
+            <img src="images/virus.png">
+        </div>
+        <div class="result-detail">
+            <h2 class="result-title"><a href="news_04.html">相次ぐ突然死「笑い病」とは？ 現状の症状と対策、過去の「老人ホーム集団死」との奇妙な共通点</a></h2>
+            <div class="result-meta"><span>メディカル・インサイトWeb</span><span>9/11(木) 11:32</span></div>
+            <div class="result-desc">近年、健康だった人間が突如として命を落とす「強直笑死事案」がメディアを騒がせている。ネット上ではその凄惨な死に様から「笑い病」という通称で呼ばれ、人々の間に不安が広がってい...</div>
+        </div>
+    `;
+
+    resultList.appendChild(item4);
+
+} else if (query === '老人ホーム集団死亡事件'){
+    resultCount.textContent = '約 1 件';
+
+    const item5 = document.createElement('li');
+    item5.className = 'result-item';
+    item5.innerHTML = `
+        <div class="result-thumb">
+            <img src="images/nursing_home.png">
+        </div>
+        <div class="result-detail">
+            <h2 class="result-title"><a href="news_05.html">愛知県の老人ホームで入居者の約3割が相次ぎ死亡 謎の「痙攣」症状、原因不明</a></h2>
+            <div class="result-meta"><span>中部地方ジャーナル</span><span>2019/11/12(火) 18:30</span></div>
+            <div class="result-desc">愛知県内の介護付有料老人ホーム「ぬくもり邸 おおるり」で、ここ数ヶ月の間に全入居者の約3割にあたる数十名が相次いで死亡するという異常事態が発生していることが、関係者への取材で分かった。...</div>
+        </div>
+    `;
+
+    resultList.appendChild(item5);
+
+} else if (query === 'ぬくもり邸' || query === 'おおるり' || query === 'ぬくもり邸おおるり' || query === 'ぬくもり邸 おおるり'){
+    resultCount.textContent = '約 1 件';
+
+    const item6 = document.createElement('li');
+    item6.className = 'result-item';
+    item6.innerHTML = `
+        <div class="result-thumb">
+            <img src="images/nursing_home_2.png">
+        </div>
+        <div class="result-detail">
+            <h2 class="result-title"><a href="news_06.html">愛知県内最大級の介護付有料老人ホーム「ぬくもり邸 おおるり」が開業 最新設備と独自の食事サポート</a></h2>
+            <div class="result-meta"><span>中部地方ジャーナル</span><span>2018/1/10(水) 10:00</span></div>
+            <div class="result-desc">愛知県内に、県内最大規模となる介護付有料老人ホーム「ぬくもり邸 おおるり」がオープンした。大手企業グループが新規事業の一環として手掛ける本施設は、最新のIoT機器を導入した見守りシステ...</div>
+        </div>
+    `;
+
+    resultList.appendChild(item6);
+} else if (query !== '') {
+    resultCount.textContent = '約 0 件';
+    resultList.innerHTML = '<div class="no-result">一致するニュースは見つかりませんでした。キーワードを変更して再度検索してください。</div>';
+    
+} else {
+    resultCount.textContent = '';
+}
+
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var newQuery = document.getElementById('searchInput').value;
+    if(newQuery.trim() !== "") {
+        window.location.href = "?q=" + encodeURIComponent(newQuery);
+    }
+});
+</script>
+
+</body>
+</html>

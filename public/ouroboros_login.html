@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ouroboros-Net Login - OMEGA LIFECARE</title>
+<style>
+:root {
+    --bg-color: #2c2c2c;
+    --text-color: #f0f0f0;
+    --text-light: #aaaaaa;
+    --accent-color: #8e44ad;
+    --accent-hover: #9b59b6;
+    --border-color: #4a4a4a;
+    --card-bg: #1f1f1f;
+    --header-bg: #111111;
+    --error-color: #e74c3c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: var(--accent-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--header-bg);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    display: flex;
+    align-items: center;
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.global-nav li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.global-nav li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.global-nav li a:hover::after,
+.global-nav li.active a::after {
+    width: 100%;
+}
+
+.global-nav li a:hover,
+.global-nav li.active a {
+    color: var(--accent-color);
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    min-height: calc(100vh - 250px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.sys-logo {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--text-color);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.sys-logo span {
+    color: var(--accent-color);
+}
+
+.sys-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-family: monospace;
+}
+
+.input-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 16px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    letter-spacing: 2px;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.btn-login {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.btn-login:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-login:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.hint-link {
+    color: var(--text-light);
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.hint-link:hover {
+    color: var(--accent-color);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 4px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-title {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.modal-title.error {
+    color: var(--error-color);
+}
+
+.modal-title.info {
+    color: var(--accent-color);
+}
+
+.modal-title.warning {
+    color: var(--error-color);
+    border-bottom: 2px solid var(--error-color);
+    padding-bottom: 10px;
+}
+
+.modal-text {
+    font-size: 14px;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.modal-image-container {
+    width: 100%;
+    background-color: #111;
+    border: 1px solid #333;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+.modal-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.modal-code {
+    font-family: monospace;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #111;
+    border: 1px solid #333;
+}
+
+.btn-close {
+    background-color: #444;
+    color: var(--text-color);
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-close:hover {
+    background-color: #666;
+}
+
+.btn-close.critical {
+    background-color: var(--error-color);
+}
+.btn-close.critical:hover {
+    background-color: #c0392b;
+}
+
+footer {
+    background-color: var(--header-bg);
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .global-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .search-container {
+        order: 2;
+        width: 100%;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="omega_home.html" class="logo">
+        OMEGA <span>LIFECARE</span>
+    </a>
+    
+    <nav class="global-nav">
+        <ul>
+            <li><a href="omega_home.html">HOME</a></li>
+            <li><a href="omega_about.html">COMPANY</a></li>
+            <li><a href="omega_activities.html">CORE ACTIVITIES</a></li>
+            <li><a href="omega_laboratory.html">LABORATORY</a></li>
+        </ul>
+    </nav>
+
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="Search...">
+        <button type="submit">Q</button>
+    </form>
+</header>
+
+<main>
+    <div class="login-container">
+        <div class="sys-logo">Ouroboros<span>-Net</span></div>
+        <div class="sys-desc">Integrated Cycle Management System</div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="password">Security Token (Password)</label>
+                <input type="password" id="password" autocomplete="off">
+            </div>
+            
+            <button type="submit" class="btn-login" id="loginBtn">AUTHENTICATE</button>
+        </form>
+
+        <div class="hint-link" id="hintLink">パスワードをお忘れですか？</div>
+    </div>
+</main>
+
+<div class="modal-overlay" id="customModal">
+    <div class="modal-content">
+        <h3 class="modal-title" id="modalTitle">TITLE</h3>
+        <p class="modal-text" id="modalText">Message</p>
+        
+        <div class="modal-image-container" id="modalImageContainer" style="display: none;">
+            <img src="images/menu_hint.png" alt="Hint Image">
+        </div>
+
+        <div class="modal-code" id="modalCode" style="display: none;"></div>
+        <button class="btn-close" id="closeModalBtn">確認</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 28/00 &gt;
+    </div>
+</footer>
+
+<script>
+// 検索機能
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "omega_search.html?q=" + encodeURIComponent(query);
+    }
+});
+
+const loginForm = document.getElementById('loginForm');
+const passwordInput = document.getElementById('password');
+const hintLink = document.getElementById('hintLink');
+const loginBtn = document.getElementById('loginBtn');
+
+const modal = document.getElementById('customModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const modalImageContainer = document.getElementById('modalImageContainer');
+const modalCode = document.getElementById('modalCode');
+const closeModalBtn = document.getElementById('closeModalBtn');
+
+// ログイン成功フラグ
+let isLoginSuccess = false;
+
+function showModal(title, text, type, options = {}) {
+    modalTitle.textContent = title;
+    modalText.innerHTML = text;
+    modalTitle.className = 'modal-title ' + type;
+
+    if (options.showImage) {
+        modalImageContainer.style.display = 'block';
+    } else {
+        modalImageContainer.style.display = 'none';
+    }
+
+    if (options.code) {
+        modalCode.innerHTML = options.code;
+        modalCode.style.display = 'block';
+    } else {
+        modalCode.style.display = 'none';
+    }
+
+    if (options.btnText) {
+        closeModalBtn.textContent = options.btnText;
+    } else {
+        closeModalBtn.textContent = '確認';
+    }
+
+    if (options.btnClass) {
+        closeModalBtn.className = 'btn-close ' + options.btnClass;
+    } else {
+        closeModalBtn.className = 'btn-close';
+    }
+
+    modal.classList.add('active');
+}
+
+function closeModal() {
+    modal.classList.remove('active');
+}
+
+// モーダルのボタンクリック処理
+closeModalBtn.addEventListener('click', function() {
+    if (isLoginSuccess) {
+        // 成功時はページ遷移
+        window.location.href = "ouroboros_news.html";
+    } else {
+        closeModal();
+    }
+});
+
+// モーダルの外側クリック処理
+modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+        if (isLoginSuccess) {
+            window.location.href = "ouroboros_news.html";
+        } else {
+            closeModal();
+        }
+    }
+});
+
+// ヒントリンクの処理
+hintLink.addEventListener('click', function() {
+    isLoginSuccess = false; // 念のためリセット
+    const hintTitle = 'SYSTEM HINT';
+    const hintText = 'セキュリティトークン（パスワード）のヒント：<br><br><strong>”ご飯”がない日</strong>';
+    showModal(hintTitle, hintText, 'info', { showImage: true });
+});
+
+// ログイン処理
+loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // toLowerCase()を外し、大文字小文字を区別して判定する
+    const pw = passwordInput.value.trim();
+
+    if (pw === '4ALqz') {
+        isLoginSuccess = true;
+        
+        // --- 演出：ロード中の表現 ---
+        loginBtn.textContent = 'AUTHENTICATING...';
+        loginBtn.disabled = true;
+
+        // 1.5秒待ってから警告モーダルを表示
+        setTimeout(function() {
+            loginBtn.textContent = 'ACCESS GRANTED';
+            loginBtn.style.backgroundColor = '#2ecc71';
+            loginBtn.style.color = '#fff';
+
+            setTimeout(function() {
+                const noticeTitle = 'SYSTEM OVERRIDE';
+                const noticeText = '【警告】<br>現在、情報統制プロトコル発動につき、一般の内部連絡システムは一時的に遮断されています。<br><br>これより、強制的に全体通知ログを表示します。速やかに内容を確認してください。';
+                const noticeCode = 'Protocol: FORCE_READ_MODE<br>Status: ACTIVE';
+                
+                showModal(noticeTitle, noticeText, 'warning', { 
+                    code: noticeCode,
+                    btnText: '通知ログへアクセス',
+                    btnClass: 'critical'
+                });
+            }, 500);
+
+        }, 1500);
+
+    } else {
+        isLoginSuccess = false;
+        const errTitle = 'ACCESS DENIED';
+        const errText = 'セキュリティトークンが一致しません。<br>入力内容を確認してください。';
+        const errCode = 'Error Code: 401 Unauthorized<br>Authentication Failed.';
+        showModal(errTitle, errText, 'error', { code: errCode });
+        passwordInput.value = '';
+    }
+});
+</script>
+
+</body>
+</html>

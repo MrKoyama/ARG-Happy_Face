@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高栄養介護食メニューのご紹介 - 介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li.active a {
+    background-color: var(--primary-dark);
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+.page-header {
+    background-color: #eee;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 32px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.intro-section p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.feature-box {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+.feature-box h2 {
+    color: var(--primary-dark);
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.concept-flex {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.concept-text {
+    flex: 1;
+}
+
+.concept-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.concept-img {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.concept-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.menu-item {
+    background-color: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.menu-img-wrapper {
+    width: 100%;
+    height: 250px;
+    background-color: #ddd;
+}
+
+.menu-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-content {
+    padding: 20px;
+}
+
+.menu-content h3 {
+    color: var(--primary-dark);
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.menu-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.schedule-box {
+    background-color: #fff8e1;
+    border: 2px solid var(--primary-color);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.schedule-box h3 {
+    color: var(--primary-dark);
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.schedule-box p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    .concept-flex {
+        flex-direction: column;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="ooruri_home.html">ホーム</a></li>
+        <li><a href="ooruri_service.html">サービス</a></li>
+        <li><a href="ooruri_facility.html">施設案内</a></li>
+        <li><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>高栄養介護食メニューのご紹介</h1>
+</div>
+
+<main>
+    <div class="intro-section">
+        <p>「食べる喜び」は、生きる喜びそのものです。<br>
+        ぬくもり邸おおるりでは、お一人おひとりの状態に合わせた<br>
+        美味しく、そして食べやすい介護食をご提供しております。</p>
+    </div>
+
+    <div class="feature-box">
+        <h2>おおるりの「食」へのこだわり</h2>
+        <div class="concept-flex">
+            <div class="concept-text">
+                <p>高齢になると、どうしても咀嚼（そしゃく）や嚥下（えんげ）の機能が低下し、通常の食事が困難になる場合があります。しかし、すべてをペースト状にしてしまうと、見た目の美しさや食感が失われ、食欲の減退を招いてしまいます。</p>
+                <p>そこで私たちは、<strong>「見た目はそのままに、驚くほど柔らかく、そして栄養価が高い」</strong>食事の提供を目指しました。専属の栄養士と調理スタッフが綿密に連携し、消化器官への負担を減らしつつ、体組織の維持に必要な栄養素を効率よく摂取できるメニューを日々研究、提供しております。</p>
+            </div>
+            <div class="concept-img">
+                <img src="images/food_concept.png" alt="厨房での打ち合わせ">
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <h2>代表的なメニュー例</h2>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-img-wrapper">
+                    <img src="images/menu_meat.png" alt="特製 柔らか煮込み肉">
+                </div>
+                <div class="menu-content">
+                    <h3>特製 柔らか煮込み肉</h3>
+                    <p>じっくりと時間をかけて調理することで、お肉の繊維を極限まで柔らかくした一品です。お箸で簡単にほぐれる柔らかさでありながら、お肉本来の豊かな風味と旨味をしっかりと残しています。</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-img-wrapper">
+                    <img src="images/menu_vegetable.png" alt="彩り野菜のやわらかテリーヌ">
+                </div>
+                <div class="menu-content">
+                    <h3>彩り野菜のやわらかテリーヌ</h3>
+                    <p>旬の野菜を丁寧に裏ごしし、喉越しの良いゼリー状に固めました。見た目にも美しく、ビタミンや食物繊維を無理なく摂取していただけます。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="schedule-box">
+            <h3>お一人おひとりに合わせた個別対応</h3>
+            <p>当施設では、あらかじめ定められた献立表をベースにしつつも、その日のご入居者様の体調や、日々の咀嚼・嚥下状態の変化をスタッフが細かく確認しております。一口大カット、きざみ食、ソフト食など、その都度最適な形態に調整してご提供することで、常に安全で美味しいお食事をお楽しみいただけるよう徹底しております。</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 12/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

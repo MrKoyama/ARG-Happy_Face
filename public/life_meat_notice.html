@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>販売自粛に関するお知らせ - LIFE MEAT | 人生を、もっと肉らしく。</title>
+<style>
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --accent-color: #c0392b;
+    --header-bg: #111111;
+    --card-bg: #2a2a2a;
+    --border-color: #444444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input::placeholder {
+    color: #888;
+}
+
+.search-container input:focus {
+    border-color: var(--text-color);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.global-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.global-nav li a:hover {
+    color: var(--text-color);
+    background-color: #222;
+}
+
+main {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 0 20px;
+    min-height: 500px;
+}
+
+.statement-box {
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    padding: 50px;
+    border-radius: 4px;
+}
+
+.statement-title {
+    font-size: 24px;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.statement-body {
+    font-size: 15px;
+    line-height: 2;
+    color: #ccc;
+}
+
+.statement-body p {
+    margin-bottom: 2em;
+}
+
+.statement-signature {
+    text-align: right;
+    margin-top: 60px;
+    color: #888;
+}
+
+footer {
+    background-color: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #666;
+    border-top: 1px solid var(--border-color);
+    margin-top: 80px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .global-nav li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid #222;
+    }
+
+    .statement-box {
+        padding: 30px 20px;
+    }
+
+    .statement-title {
+        font-size: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="life_meat.html" class="logo">
+        LIFE <span>MEAT</span>
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="SEARCH...">
+        <button type="submit">GO</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="life_meat.html">PRODUCTS</a></li>
+        <li><a href="life_meat_about.html">ABOUT US</a></li>
+        <li><a href="life_meat_recipe.html">RECIPE</a></li>
+        <li><a href="life_meat_store.html">ONLINE STORE</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="statement-box">
+        <h1 class="statement-title">一部報道に関する見解と<br>商品の販売自粛に関するお知らせ</h1>
+        
+        <div class="statement-body">
+            <p>平素より、弊社商品「LIFE MEAT（ライフミート）」をご愛顧いただき、誠にありがとうございます。</p>
+            
+            <p>現在、各種メディアおよびSNS等におきまして、全国で相次いで発生している原因不明の突然死の事案（通称：強直笑死事案）と弊社商品との関連を疑う報道がなされております。<br>
+            この度の報道により、お客様をはじめ関係者の皆様に多大なるご心配とご不安をおかけしておりますことを、深くお詫び申し上げます。</p>
+            
+            <p>弊社といたしましては、事態を極めて重く受け止めており、現在、管轄の保健所ならびに警察当局の調査に全面的に協力を行っております。<br>
+            なお、現時点におきまして、弊社製造工場での立ち入り検査の結果、一般的な食中毒の原因となる細菌やウイルス等の混入事例は一切確認されておりません。また、本件に関連し、弊社が独自開発いたしました代替タンパク質の成分構造についても、現在専門機関を通じて詳細な調査が行われております。</p>
+            
+            <p>しかしながら、お客様の安全と安心を第一に考え、警察および専門機関による最終的な調査結果が判明し、安全性が完全に証明されるまでの間、オンラインストアにおける全商品の販売を当面の間、自粛（一時停止）させていただきます。</p>
+            
+            <p>本件に関しまして、新たな事実が判明次第、速やかにご報告申し上げます。<br>
+            お客様には大変なご迷惑をおかけいたしますが、何卒ご理解とご協力を賜りますようお願い申し上げます。</p>
+        </div>
+        
+        <div class="statement-signature">
+            ライフミート・フーズ合同会社<br>
+            代表執行役員
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 19/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "life_meat_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>

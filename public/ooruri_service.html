@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス - 介護付有料老人ホーム「ぬくもり邸 おおるり」</title>
+<style>
+:root {
+    --primary-color: #f39c12;
+    --primary-dark: #e67e22;
+    --text-color: #333333;
+    --bg-color: #fdfbf7;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #666;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+.global-nav {
+    background-color: var(--primary-color);
+}
+
+.global-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.global-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.global-nav li a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.global-nav li.active a {
+    background-color: var(--primary-dark);
+}
+
+.global-nav li a:hover {
+    background-color: var(--primary-dark);
+}
+
+.page-header {
+    background-color: #eee;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 32px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.service-block {
+    display: flex;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.service-block:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.service-img-wrapper {
+    flex: 1;
+    background-color: #ddd;
+}
+
+.service-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.service-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-content h2 {
+    color: var(--primary-dark);
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.service-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin: 0 0 20px 0;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #555;
+}
+
+.service-list li::before {
+    content: '■';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+}
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    margin-top: 60px;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-level {
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    .global-nav ul {
+        flex-direction: column;
+    }
+
+    .service-block, .service-block:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .service-img-wrapper {
+        height: 250px;
+    }
+
+    .service-content {
+        padding: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-level {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="ooruri_home.html" class="logo">
+        <span>介護付有料老人ホーム</span>
+        ぬくもり邸 おおるり
+    </a>
+    <form class="search-container" id="searchForm">
+        <input type="text" id="searchInput" autocomplete="off" placeholder="サイト内検索">
+        <button type="submit">検索</button>
+    </form>
+</header>
+
+<nav class="global-nav">
+    <ul>
+        <li><a href="ooruri_home.html">ホーム</a></li>
+        <li class="active"><a href="ooruri_service.html">サービス</a></li>
+        <li><a href="ooruri_facility.html">施設案内</a></li>
+        <li><a href="ooruri_greeting.html">施設長のご挨拶</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <h1>サービスのご案内</h1>
+</div>
+
+<main>
+    <div class="service-block">
+        <div class="service-img-wrapper">
+            <img src="images/service_care.png" alt="介護・看護サービス">
+        </div>
+        <div class="service-content">
+            <h2>安心の介護・看護サポート</h2>
+            <p>ご入居者様が毎日を安心してお過ごしいただけるよう、専門知識を持ったスタッフが24時間体制で常駐しています。日々の健康管理から、お一人おひとりの生活リズムに合わせたパーソナルなケアまで、ご家族に代わって真心を込めてサポートいたします。</p>
+            <ul class="service-list">
+                <li>24時間365日の介護スタッフ常駐</li>
+                <li>日中の看護スタッフ常駐とバイタルチェック</li>
+                <li>入浴、排泄、食事などの生活介助</li>
+                <li>医療機関とのスムーズな連携</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="service-block">
+        <div class="service-img-wrapper">
+            <!-- 施設内の清潔な厨房で、調理師が食事の盛り付けをしている様子。画像サイズは500*400 -->
+            <img src="images/ooruri_02.png" alt="食事サービス">
+        </div>
+        <div class="service-content">
+            <h2>食へのこだわりと栄養管理</h2>
+            <p>毎日の楽しみである「お食事」は、施設内の専用厨房で手作りしています。専属の栄養士がカロリーや栄養バランスを細かく計算。噛む力や飲み込む力が弱くなった方にも美味しく召し上がっていただけるよう、独自のメニューもご用意しております。</p>
+            <ul class="service-list">
+                <li>専属栄養士による徹底した栄養管理</li>
+                <li>独自開発の「高栄養介護食メニュー」の提供</li>
+                <li>季節を感じる行事食やイベント食</li>
+                <li>アレルギーや嗜好に合わせた個別対応</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="service-block">
+        <div class="service-img-wrapper">
+            <img src="images/service_rehab.png" alt="リハビリ・アクティビティ">
+        </div>
+        <div class="service-content">
+            <h2>リハビリと充実のアクティビティ</h2>
+            <p>現在の身体機能を維持・向上させるため、専門の理学療法士が個別のリハビリプログラムを作成します。また、毎日を生き生きと過ごしていただくため、趣味の教室や季節のイベントなど、多彩なアクティビティを企画・実施しています。</p>
+            <ul class="service-list">
+                <li>専門家による個別機能訓練プログラム</li>
+                <li>体操や音楽療法を取り入れた集団リハビリ</li>
+                <li>脳トレ、書道、手芸などの趣味サークル</li>
+                <li>お花見やクリスマスなどの季節の行事</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-level">
+        &lt; 9/00 &gt;
+    </div>
+</footer>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var query = document.getElementById('searchInput').value;
+    if(query.trim() !== "") {
+        window.location.href = "ooruri_search.html?q=" + encodeURIComponent(query);
+    }
+});
+</script>
+
+</body>
+</html>
