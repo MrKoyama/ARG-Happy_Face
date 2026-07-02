@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「強直笑死事案」エンディングページ</title>
+<style>
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #e0e0e0;
+    --text-muted: #666666;
+    --border-color: #333333;
+    --btn-color: #f39c12;
+    --btn-hover: #d68910;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    opacity: 0;
+    animation: fadeIn 3s ease-in forwards 1s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.end-title {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.main-title {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin: 0 0 40px 0;
+    text-align: center;
+}
+
+.message-box {
+    max-width: 600px;
+    text-align: center;
+    line-height: 2;
+    font-size: 15px;
+    color: #aaaaaa;
+}
+
+.message-box p {
+    margin-bottom: 2em;
+}
+
+.survey-btn-container {
+    margin-bottom: 2em;
+}
+
+.btn-survey {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 12px 30px;
+    border: 1px solid var(--text-color);
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.btn-survey:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+.divider {
+    width: 40px;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 40px auto;
+}
+
+footer {
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards 3s;
+}
+
+.footer-text {
+    line-height: 1.6;
+}
+
+.footer-end {
+    font-family: monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+    
+    .message-box {
+        font-size: 14px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<main>
+    <div class="end-title">THANK YOU FOR PLAYING</div>
+    <h1 class="main-title">「強直笑死事案」</h1>
+
+    <div class="message-box">
+        <p>
+            これにて、本作は終了となります。<br>
+            最後までプレイしていただき、<br>
+            誠にありがとうございました。
+        </p>
+        <p>
+            お時間がございましたら、ぜひともこちらのアンケートにご回答いただけると幸いです。
+        </p>
+        
+        <div class="survey-btn-container">
+            <a href="https://forms.gle/7yhrLZHULJKv3d5g7" target="_blank" rel="noopener noreferrer" class="btn-survey">
+                アンケートに回答する
+            </a>
+        </div>
+
+        <div class="divider"></div>
+        <p>
+            私の過去作もプレイしていただけると嬉しいです。<br>
+            次回作にも、ご期待ください。
+        </p>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-text">
+        このサイトの内容はフィクションです。<br>
+        登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
+    </div>
+    <div class="footer-end">
+        &lt; END &gt;
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("System Terminated. Thank you for playing.");
+});
+</script>
+
+</body>
+</html>

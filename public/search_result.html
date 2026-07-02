@@ -277,6 +277,27 @@ footer {
 </footer>
 
 <script>
+// ==========================================
+// 日付を動的に計算する関数
+// ==========================================
+function getDynamicDate(daysAgo, timeString, includeYear = false) {
+    const date = new Date();
+    date.setDate(date.getDate() - daysAgo); // 何日前にするか
+    
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const days = ['日', '月', '火', '水', '木', '金', '土'];
+    const dayOfWeek = days[date.getDay()];
+    
+    // includeYear が true なら年を表示、false なら月日のみ
+    if (includeYear) {
+        return `${year}/${month}/${day}(${dayOfWeek}) ${timeString}`;
+    } else {
+        return `${month}/${day}(${dayOfWeek}) ${timeString}`;
+    }
+}
+
 const urlParams = new URLSearchParams(window.location.search);
 const query = urlParams.get('q') || '';
 
@@ -286,19 +307,25 @@ document.getElementById('searchInput').value = query;
 const resultList = document.getElementById('resultList');
 const resultCount = document.getElementById('resultCount');
 
+// 検索ワードごとの分岐処理
 if (query === '強直笑死事案') {
     resultCount.textContent = '約 3 件';
+    
+    // 【仮の数字】それぞれの日数と時間を指定してください
+    const dateItem1 = getDynamicDate(17, "11:32"); // 2日前の11:32
+    const dateItem2 = getDynamicDate(31, "12:00"); // 5日前の12:00
+    const dateItem3 = getDynamicDate(48, "08:15"); // 9日前の08:15
     
     const item1 = document.createElement('li');
     item1.className = 'result-item';
     item1.innerHTML = `
         <div class="result-thumb">
-            <img src="images/apartment.png">
+            <img src="images/live.png">
         </div>
         <div class="result-detail">
-            <h2 class="result-title"><a href="news_01.html">アパートで50代男性が変死、直前に響き渡った「異常な笑い声」</a></h2>
-            <div class="result-meta"><span>毎朝新聞デジタル</span><span>7/24(木) 11:32</span></div>
-            <div class="result-desc">静岡県警は23日、県内の木造アパートの一室で、この部屋に住む50代とみられる男性の遺体を発見したと発表した。同日午前、アパートの大家が安否確認のためにマスターキーで室内に入ったところ...</div>
+            <h2 class="result-title"><a href="news_01.html">人気自然派インフルエンサー、自宅で変死 配信中の“異常な痙攣”と「強直笑死事案」の関連は</a></h2>
+            <div class="result-meta"><span>週刊文秋ONLINE</span><span>${dateItem1} 配信</span></div>
+            <div class="result-desc">ヴィーガン生活や代替肉の紹介などで、同世代の女性を中心に人気を集めていた自然派インフルエンサーの早見 みあさん（20代）が、都内の自宅マンションで死亡しているのが発見された。数日間SNS...</div>
         </div>
     `;
 
@@ -310,8 +337,8 @@ if (query === '強直笑死事案') {
         </div>
         <div class="result-detail">
             <h2 class="result-title"><a href="news_02.html">赤城山中でソロキャンパーの変死体を発見、深夜の山に響いた「狂気的な笑い声」 相次ぐ不審死との関連は</a></h2>
-            <div class="result-meta"><span>関東日報オンライン</span><span>8/11(月) 12:00</span></div>
-            <div class="result-desc">群馬県警は9日、赤城山中の指定キャンプ場から数キロ離れた林道脇で、先月末から行方不明になっていた都内の30代男性の遺体を発見したと発表した。男性はソロキャンプ目的で山に入ったとみられて...</div>
+            <div class="result-meta"><span>関東日報オンライン</span><span>${dateItem2} 配信</span></div>
+            <div class="result-desc">赤城山中の指定キャンプ場から数キロ離れた林道脇で、先月末から行方不明になっていた都内の30代男性の遺体を発見したと発表した。男性はソロキャンプ目的で山に入ったとみられて...</div>
         </div>
     `;
 
@@ -319,12 +346,12 @@ if (query === '強直笑死事案') {
     item3.className = 'result-item';
     item3.innerHTML = `
         <div class="result-thumb">
-            <img src="images/live.png">
+            <img src="images/apartment.png">
         </div>
         <div class="result-detail">
-            <h2 class="result-title"><a href="news_03.html">人気自然派インフルエンサー、自宅で変死 配信中の“異常な痙攣”と「笑い病」の関連は</a></h2>
-            <div class="result-meta"><span>週刊文秋ONLINE</span><span>8/18(月) 08:15</span></div>
-            <div class="result-desc">ヴィーガン生活や代替肉の紹介などで、同世代の女性を中心に人気を集めていた自然派インフルエンサーの早見 みあさん（20代）が、都内の自宅マンションで死亡しているのが発見された。数日間SNS...</div>
+            <h2 class="result-title"><a href="news_03.html">アパートで50代男性が変死、直前に響き渡った「異常な笑い声」</a></h2>
+            <div class="result-meta"><span>毎朝新聞デジタル</span><span>${dateItem3} 配信</span></div>
+            <div class="result-desc">県内の木造アパートの一室で、この部屋に住む50代とみられる男性の遺体を発見したと発表した。同日午前、アパートの大家が安否確認のためにマスターキーで室内に入ったところ...</div>
         </div>
     `;
 
@@ -335,6 +362,9 @@ if (query === '強直笑死事案') {
 } else if (query === '笑い病'){
     resultCount.textContent = '約 1 件';
 
+    // 【仮の数字】1日前の11:32
+    const dateItem4 = getDynamicDate(6, "17:47");
+
     const item4 = document.createElement('li');
     item4.className = 'result-item';
     item4.innerHTML = `
@@ -343,7 +373,7 @@ if (query === '強直笑死事案') {
         </div>
         <div class="result-detail">
             <h2 class="result-title"><a href="news_04.html">相次ぐ突然死「笑い病」とは？ 現状の症状と対策、過去の「老人ホーム集団死」との奇妙な共通点</a></h2>
-            <div class="result-meta"><span>メディカル・インサイトWeb</span><span>9/11(木) 11:32</span></div>
+            <div class="result-meta"><span>メディカル・インサイトWeb</span><span>${dateItem4} 配信</span></div>
             <div class="result-desc">近年、健康だった人間が突如として命を落とす「強直笑死事案」がメディアを騒がせている。ネット上ではその凄惨な死に様から「笑い病」という通称で呼ばれ、人々の間に不安が広がってい...</div>
         </div>
     `;
@@ -353,6 +383,9 @@ if (query === '強直笑死事案') {
 } else if (query === '老人ホーム集団死亡事件'){
     resultCount.textContent = '約 1 件';
 
+    // 古いニュースなので「1800日前（約5年前）」にして、第3引数を true（年を表示）にしています
+    const dateItem5 = getDynamicDate(1800, "18:30", true);
+
     const item5 = document.createElement('li');
     item5.className = 'result-item';
     item5.innerHTML = `
@@ -361,7 +394,7 @@ if (query === '強直笑死事案') {
         </div>
         <div class="result-detail">
             <h2 class="result-title"><a href="news_05.html">愛知県の老人ホームで入居者の約3割が相次ぎ死亡 謎の「痙攣」症状、原因不明</a></h2>
-            <div class="result-meta"><span>中部地方ジャーナル</span><span>2019/11/12(火) 18:30</span></div>
+            <div class="result-meta"><span>中部地方ジャーナル</span><span>2021/11/12(金) 18:30 配信</span></div>
             <div class="result-desc">愛知県内の介護付有料老人ホーム「ぬくもり邸 おおるり」で、ここ数ヶ月の間に全入居者の約3割にあたる数十名が相次いで死亡するという異常事態が発生していることが、関係者への取材で分かった。...</div>
         </div>
     `;
@@ -371,6 +404,9 @@ if (query === '強直笑死事案') {
 } else if (query === 'ぬくもり邸' || query === 'おおるり' || query === 'ぬくもり邸おおるり' || query === 'ぬくもり邸 おおるり'){
     resultCount.textContent = '約 1 件';
 
+    // 古いニュースなので「2200日前（約6年前）」にして、第3引数を true（年を表示）にしています
+    const dateItem6 = getDynamicDate(2200, "10:00", true);
+
     const item6 = document.createElement('li');
     item6.className = 'result-item';
     item6.innerHTML = `
@@ -379,12 +415,13 @@ if (query === '強直笑死事案') {
         </div>
         <div class="result-detail">
             <h2 class="result-title"><a href="news_06.html">愛知県内最大級の介護付有料老人ホーム「ぬくもり邸 おおるり」が開業 最新設備と独自の食事サポート</a></h2>
-            <div class="result-meta"><span>中部地方ジャーナル</span><span>2018/1/10(水) 10:00</span></div>
+            <div class="result-meta"><span>中部地方ジャーナル</span><span>2018/1/10(水) 10:00 配信</span></div>
             <div class="result-desc">愛知県内に、県内最大規模となる介護付有料老人ホーム「ぬくもり邸 おおるり」がオープンした。大手企業グループが新規事業の一環として手掛ける本施設は、最新のIoT機器を導入した見守りシステ...</div>
         </div>
     `;
 
     resultList.appendChild(item6);
+    
 } else if (query !== '') {
     resultCount.textContent = '約 0 件';
     resultList.innerHTML = '<div class="no-result">一致するニュースは見つかりませんでした。キーワードを変更して再度検索してください。</div>';
@@ -393,6 +430,7 @@ if (query === '強直笑死事案') {
     resultCount.textContent = '';
 }
 
+// 検索実行
 document.getElementById('searchForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var newQuery = document.getElementById('searchInput').value;

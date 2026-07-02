@@ -291,7 +291,7 @@ footer {
         <li><a href="#">エンタメ</a></li>
         <li><a href="#">スポーツ</a></li>
         <li><a href="#">IT</a></li>
-        <li><a href="#">科学</a></li>
+        <li><a href="#">科学・医療</a></li>
         <li><a href="#">地域</a></li>
     </ul>
 </nav>
@@ -301,10 +301,9 @@ footer {
         <h2 class="section-title"><span>急上昇</span>主要ニュース</h2>
         
         <a href="news_01.html" class="pickup-article">
-            <!-- 規制線が張られたアパートの外観画像。画像サイズは600*315 -->
-            <img class="pickup-image" src="images/apartment.png">
-            <div class="pickup-title">アパートで50代男性が変死、直前に響き渡った「異常な笑い声」 相次ぐ事件との関連は</div>
-            <div class="pickup-meta">毎朝新聞デジタル 7/24(木) 11:32</div>
+            <img class="pickup-image" src="images/live.png">
+            <div class="pickup-title">人気自然派インフルエンサー、自宅で変死 配信中の“異常な痙攣”と「強直笑死事案」の関連は</div>
+            <div class="pickup-meta">週刊文秋ONLINE <span class="date" id="articleDate"></span></div>
         </a>
 
         <ul class="news-list">
@@ -322,7 +321,7 @@ footer {
         <div class="side-box">
             <h3 class="side-box-title">アクセスランキング（国内）</h3>
             <ul class="ranking-list">
-                <li><span class="rank">1</span><a href="news_01.html">アパートで50代男性が変死、直前に響き渡った「異常な笑い声」 相次ぐ事件との関連は</a></li>
+                <li><span class="rank">1</span><a href="news_01.html">人気自然派インフルエンサー、自宅で変死 配信中の“異常な痙攣”と「強直笑死事案」の関連は</a></li>
                 <li><span class="rank">2</span><a href="#">政府、新たな経済対策の骨格案を提示 物価高への対応が焦点</a></li>
                 <li><span class="rank">3</span><a href="#">週末にかけて全国的に冷え込み強まる 日本海側では降雪の恐れ</a></li>
                 <li><span class="rank">4</span><a href="#">大型連休の国内旅行予約状況、前年比120%に回復の見通し</a></li>
@@ -349,6 +348,33 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
     if(query.trim() !== "") {
         window.location.href = "search_result.html?q=" + encodeURIComponent(query);
     }
+});
+
+// --- 記事の配信日を現在日時から逆算して表示する処理 ---
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // 【設定部分】ここを各ニュースサイトごとに変更してください
+    const daysAgo = 17;             // 現在から「何日前」の日付にするか（例：3日前）
+    const timeString = "11:32";    // 配信時間（例：11:32）
+    
+    
+    // 現在の日付を取得し、指定された日数分（daysAgo）だけ過去に戻す
+    const date = new Date();
+    date.setDate(date.getDate() - daysAgo);
+    
+    // 月・日を取得
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    
+    // 曜日の計算
+    const days = ['日', '月', '火', '水', '木', '金', '土'];
+    const dayOfWeek = days[date.getDay()];
+    
+    // フォーマットを作成（例： "10/24(木) 11:32 配信" ）
+    const formattedDate = `${month}/${day}(${dayOfWeek}) ${timeString} 配信`;
+    
+    // HTMLのid="articleDate"の部分に書き込む
+    document.getElementById('articleDate').textContent = formattedDate;
 });
 </script>
 

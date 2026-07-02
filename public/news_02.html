@@ -232,14 +232,14 @@ footer {
 
     <div class="media-name">関東日報オンライン</div>
     <h1>赤城山中でソロキャンパーの変死体を発見、深夜の山に響いた「狂気的な笑い声」 相次ぐ不審死との関連は</h1>
-    <div class="date">8/11(月) 06:00 配信</div>
+    <div class="date" id="articleDate"></div>
     
     <div class="article-image-container">
         <img src="images/camp.png">
     </div>
 
     <div class="content">
-        <p>群馬県警は9日、赤城山中の指定キャンプ場から数キロ離れた林道脇で、先月末から行方不明になっていた都内の30代男性の遺体を発見したと発表した。男性はソロキャンプ目的で山に入ったとみられており、テント内でシュラフ（寝袋）の上に倒れた状態で死亡していた。</p>
+        <p>群馬県警は<span class="calc-day" data-days-ago="32"></span>日、赤城山中の指定キャンプ場から数キロ離れた林道脇で、先月末から行方不明になっていた都内の30代男性の遺体を発見したと発表した。男性はソロキャンプ目的で山に入ったとみられており、テント内でシュラフ（寝袋）の上に倒れた状態で死亡していた。</p>
         
         <p>発見のきっかけは、前日の深夜に起きた不可解な騒ぎだった。キャンプ場の管理人から「山奥の方から、不気味な笑い声のようなものが聞こえる」と110番通報および地元猟友会への連絡が入った。発情期の獣の鳴き声や不審者の可能性を考慮し、連絡を受けた猟友会メンバーと警察官が翌朝、山中を捜索。声がした方角の林道脇で、男性が張っていたとみられる一人用テントを発見した。</p>
         
@@ -268,6 +268,51 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
     if(query.trim() !== "") {
         window.location.href = "search_result.html?q=" + encodeURIComponent(query);
     }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // ==========================================
+    // ① 記事タイトル下の「配信日」の処理
+    // ==========================================
+    const daysAgo = 31;             // 配信日を何日前にするか
+    const timeString = "12:00";    // 配信時間
+    
+    const date = new Date();
+    date.setDate(date.getDate() - daysAgo);
+    
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const days = ['日', '月', '火', '水', '木', '金', '土'];
+    const dayOfWeek = days[date.getDay()];
+    
+    const formattedDate = `${month}/${day}(${dayOfWeek}) ${timeString} 配信`;
+    
+    // id="articleDate" があれば書き込む
+    const articleDateEl = document.getElementById('articleDate');
+    if(articleDateEl) {
+        articleDateEl.textContent = formattedDate;
+    }
+
+
+    // ==========================================
+    // ② 本文中の「〇〇日」を自動計算する処理（★ここを追記）
+    // ==========================================
+    // class="calc-day" がついている要素をすべて探す
+    const calcDayElements = document.querySelectorAll('.calc-day');
+    
+    calcDayElements.forEach(function(el) {
+        // data-days-ago の数字を読み取る
+        const ago = parseInt(el.getAttribute('data-days-ago'), 10);
+        
+        // 現在の日付から逆算する
+        const calcDate = new Date();
+        calcDate.setDate(calcDate.getDate() - ago);
+        
+        // 「日」だけを取得して、HTMLに書き込む
+        el.textContent = calcDate.getDate();
+    });
+
 });
 </script>
 
