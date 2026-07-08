@@ -474,9 +474,9 @@ function renderResults(searchQuery) {
     const lowerQuery = searchQuery.toLowerCase();
     let foundResults = [];
 
-    // データベースからキーワードが一致するものを探す
+// データベースからキーワードが完全一致するものを探す
     searchDatabase.forEach(item => {
-        const isMatch = item.keywords.some(keyword => lowerQuery.includes(keyword) || keyword.includes(lowerQuery));
+        const isMatch = item.keywords.some(keyword => keyword === lowerQuery);
         if (isMatch) {
             foundResults = foundResults.concat(item.results);
         }

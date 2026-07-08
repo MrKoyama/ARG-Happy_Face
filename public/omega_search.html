@@ -411,7 +411,7 @@ function renderResults(searchQuery) {
     let foundResults = [];
 
     searchDatabase.forEach(item => {
-        const isMatch = item.keywords.some(keyword => lowerQuery.includes(keyword) || keyword.includes(lowerQuery));
+        const isMatch = item.keywords.some(keyword => keyword === lowerQuery);
         if (isMatch) {
             foundResults = foundResults.concat(item.results);
         }

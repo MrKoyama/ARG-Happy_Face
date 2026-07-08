@@ -277,11 +277,15 @@ footer {
         このサイトの内容はフィクションです。<br>
         登場する人物・団体・名称等は架空であり、実在のものとは関係ありません。
     </div>
+    <div class="footer-level">
+        &lt; 14/00 &gt;
+    </div>
 </footer>
 
 <script>
 const searchDatabase = [
     {
+        // データベースに登録するキーワードも、ユーザーが入力しやすい形に揃えておきます
         keywords: ["高栄養介護食メニュー"],
         results: [
             {
@@ -314,15 +318,19 @@ const resultList = document.getElementById('resultList');
 function renderResults(searchQuery) {
     resultList.innerHTML = '';
     
-    if (!searchQuery.trim()) {
+    // 検索ワードの前後の空白を削除
+    const trimmedQuery = searchQuery.trim();
+    
+    if (!trimmedQuery) {
         resultList.innerHTML = '<div class="no-result">検索キーワードが入力されていません。</div>';
         return;
     }
 
     let foundResults = [];
 
+    // ★ ここを完全一致 (===) に変更 ★
     searchDatabase.forEach(item => {
-        const isMatch = item.keywords.some(keyword => searchQuery.includes(keyword) || keyword.includes(searchQuery));
+        const isMatch = item.keywords.some(keyword => keyword === trimmedQuery);
         if (isMatch) {
             foundResults = foundResults.concat(item.results);
         }
